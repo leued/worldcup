@@ -16,6 +16,10 @@ export default new Router({
       component: () => import ('@/components/layout/main'),
       children : [
         {
+          path: 'index',
+          name: 'index',
+          component: () => import ('@/pages/index/index')
+        },{
           path: 'test',
           name: 'test',
           component: () => import ('@/pages/test/index')
