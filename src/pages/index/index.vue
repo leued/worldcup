@@ -1,9 +1,9 @@
 <template>
   	<div>
-		<div domIndex="0" class="time domOn"><span>猜胜负</span></div>
-		<div domIndex="1" class="time">{{showData[currentDataIndex].time}}</div>
-		<div>
-			<div :domIndex="index+2" class="g-flexbox wrapbox" v-for="(i,index) in showData[currentDataIndex].data" >
+		<div domIndex="0" class="time" :class="{domOn:domIndex==0}"><span>猜胜负</span></div>
+		<div domIndex="1" class="time" :class="{domOn:domIndex==1}">{{showData[currentDataIndex].time}}</div>
+		<div class="player">
+			<div :domIndex="index+2" class="g-flexbox wrapbox" :class="{domOn:domIndex==index+2}" v-for="(i,index) in showData[currentDataIndex].data" >
 				<div class="g-flex box">{{i.left}}</div>
 				<div class="box box_2">
 					<span :class="{on:isOn(index, childrenIndex), on2:isOn2(index, childrenIndex)}"  v-for="(j, childrenIndex) in i.value">{{j.name}}</span>
@@ -11,13 +11,13 @@
 				<div class="g-flex box">{{i.right}}</div>
   			</div>
 		</div>
-		<div :domIndex="currentDataLength()+2">提交</div>
+		<div :domIndex="currentDataLength()+2" :class="{domOn:domIndex==currentDataLength()+2}">提交</div>
   	</div>
 </template>
 
 <script>
 import Vue from 'vue';
-import $ from '../../assets/zepto.min.js';
+//import $ from '../../assets/zepto.min.js';
 export default {
   name: 'index',
   data () {
@@ -116,6 +116,13 @@ export default {
 		currentDataLength:function(){
 			return this.showData[this.currentDataIndex].data.length;
 		},
+		playerIndex:{},
+		// playerIndex:{
+		// 	play_0_0:0,
+		// 	play_0_1:0,
+		// 	play_0_2:0,
+		// 	play_0_3:0
+		// },
 		currentLineIndex:{   //当前列索引
 			0:{
 				len:3,
@@ -149,7 +156,8 @@ export default {
   },
   methods: {
 		move(){
-			var me  = this;
+			let me  = this;
+			this.forEachPlayer();
 			document.onkeydown=function(e){
 	  			e=window.event||e;
 			  	switch(e.keyCode){
@@ -157,28 +165,33 @@ export default {
 				  		me.enterPlay();
 				  		break;
 				    case 37: //左键
-					    //me.currentCol[me.currentLine].col--;
 				      	me.setX("left");
 				     	break;
 				    case 38: //向上键
 				    	me.setDomY("up")
-				      	//me.setY("up");
 				      break;
 				    case 39: //右键
-				      	//me.currentCol[me.currentLine].col++;
 			      		me.setX("right");
 				      	break;
 				    case 40: //向下键
 				    	me.setDomY("down")
-			      		//me.setY("down");
 				      	break;
 				    default:
 				      	break;
 			  	}
 			}
 		},
+		forEachPlayer(){ //初始化player index
+			let me = this;
+			let data = me.showData;
+			for(var i=0;i<data.length;i++){
+				for(var j=0;j<data[i].data.length;j++){
+					me.playerIndex["play_" + i + "_"+j] = 0
+				}
+			}
+		},
 		setDomY(type){
-			var me = this;
+			let me = this;
 			if(type=="up"){
 				me.domIndex--;
 			}else{
@@ -188,52 +201,50 @@ export default {
 			if(me.domIndex*1<=0){
 				me.domIndex = 0;
 			}
-			if(me.domIndex*1>=$('[domIndex]').length){
-				me.domIndex = $('[domIndex]').length-1;
-			}
-			$('[domIndex]').removeClass('domOn');
-			$('[domIndex="'+me.domIndex+'"]').addClass('domOn');
-
-			if(me.domIndex==2){
+			if(me.domIndex*1>=me.getAttrLength("div","domIndex")){
+				me.domIndex = me.getAttrLength("div","domIndex")-1;
 			}
 		},
-		setY(type){
-			var me = this;
-			if(type=="up"){
-				me.currentLineIndex[me.currentDateIndex].line--;
-			}else{
-				me.currentLineIndex[me.currentDateIndex].line++;
+		getAttrLength(node,attr){
+			let nodes = document.getElementsByTagName(node);
+			let index=0;
+			for(var i=0;i<nodes.length;i++){
+				if(nodes[i].getAttribute(attr)){
+					index++
+				}
 			}
-			if(me.currentLineIndex[me.currentDateIndex].line<0){
-				me.currentLineIndex[me.currentDateIndex].line=0;
-			}
-			if(me.currentLineIndex[me.currentDateIndex].line >= me.currentLineIndex[me.currentDateIndex].len){
-				me.currentLineIndex[me.currentDateIndex].line = me.currentLineIndex[me.currentDateIndex].len-1;
-			} 
-
-
-			/*me.currentCol[me.currentLine] = {
-				col:me.currentCol[me.currentLine].col ? me.currentCol[me.currentLine].col : 0
-			}*/
+			return index;
 		},
 		setX(type){
-			var me = this;
-			if(me.domIndex==1 && type=="right"){
-				me.currentDataIndex++
-			}
-			if(me.domIndex==1 && type=="left"){
-				me.currentDataIndex--
+			let me = this;
+			if(me.domIndex==1){   //选择日期
+				if(type=="right"){
+					me.currentDataIndex++
+				}else{
+					me.currentDataIndex--
+				}
+				if(me.currentDataIndex<=0){
+					me.currentDataIndex = 0;
+				}
+				if(me.currentDataIndex>= me.showData.length){
+					me.currentDataIndex = me.showData.length-1;
+				}
 			}
 
-			// if(me.currentCol[me.currentLine].col<0){
-			// 	me.currentCol[me.currentLine].col=0;
-			// }
-			// if(me.currentCol[me.currentLine].col >= 3){
-			// 	me.currentCol[me.currentLine].col = 2;
-			// } 
-			// me.currentCol[me.currentLine] = {
-			// 	col:me.currentCol[me.currentLine].col
-			// }
+			if(me.domIndex>1 && me.domIndex < me.getAttrLength("div","domIndex")-1){ //选择胜负
+				if(type=="right"){
+					me.playerIndex["play_" + me.currentDataIndex + "_"+(me.domIndex-2)] ++;
+				}else{
+					me.playerIndex["play_" + me.currentDataIndex + "_"+(me.domIndex-2)] --;
+				}
+				if(me.playerIndex["play_" + me.currentDataIndex + "_"+(me.domIndex-2)]<=0){
+					me.playerIndex["play_" + me.currentDataIndex + "_"+(me.domIndex-2)] = 0;
+				}
+				if(me.playerIndex["play_" + me.currentDataIndex + "_"+(me.domIndex-2)]>= 3){
+					me.playerIndex["play_" + me.currentDataIndex + "_"+(me.domIndex-2)] = 2;
+				}
+				//console.log(123,"play_" + me.currentDataIndex + "_"+(me.domIndex-2), me["play_" + me.currentDataIndex + "_"+(me.domIndex-2)])
+			}
 		},
 		isCurrent(dateIndex, index){
 			var me  = this;
@@ -244,12 +255,18 @@ export default {
 		},
 		isOn(index, childrenIndex){
 			var me = this;
+			if(me.playerIndex["play_" + me.currentDataIndex + "_"+(me.domIndex-2)]==childrenIndex && (index==me.domIndex-2)){
+				return true;
+			}
 			/*if(childrenIndex==me.currentCol[me.currentLine].col && index==me.currentLine){
 					return true;
 			}*/
 		},
 		isOn2(index, childrenIndex){
 			var me = this;
+			if(childrenIndex == me.playerIndex["play_" + me.currentDataIndex + "_"+index]){
+				return true;
+			}
 			/*if(childrenIndex==me.currentCol[index].col){
 					return true;
 			}*/
@@ -281,6 +298,10 @@ export default {
 	.time{
 		width: 400px;
 		margin: 0 auto;	
+	}
+	.player{
+		//height: 200px;
+		overflow-y:auto;
 	}
 	.wrapbox{
 		width: 400px;
