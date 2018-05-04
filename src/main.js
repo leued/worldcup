@@ -6,6 +6,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import $le from './utils/le.js'
+import './assets/style/main.less'
 
 Vue.config.productionTip = false
 Vue.use($le);

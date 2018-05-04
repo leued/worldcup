@@ -17,7 +17,6 @@
 
 <script>
 import Vue from 'vue';
-//import $ from '../../assets/zepto.min.js';
 export default {
   name: 'index',
   data () {
@@ -117,38 +116,17 @@ export default {
 			return this.showData[this.currentDataIndex].data.length;
 		},
 		playerIndex:{},
-		// playerIndex:{
-		// 	play_0_0:0,
-		// 	play_0_1:0,
-		// 	play_0_2:0,
-		// 	play_0_3:0
-		// },
-		currentLineIndex:{   //当前列索引
-			0:{
-				len:3,
-				line:0
-			},
-			1:{
-				len:3,
-				line:0
-			},
-			2:{
-				len:3,
-				line:0
-			}
-
-		},
-		currentCol:{  //当前行的元素的索引
-			0:{
-				col:0
-			},
-			1:{
-				col:0
-			},
-			2:{
-				col:0
-			}
+		module:[
+			{key:"header", value:[{name:"猜胜负",id:0},{name:"猜冠军",id:1},{name:"积分榜",id:2}]},
+			{key:"time", value:[{name:"20180612",id:0},{name:"20180612",id:1},{name:"20180612",id:2}]},
+			{key:"list", value:[{name:"20180612",id:0},{name:"20180612",id:1},{name:"20180612",id:2}]},
+			{key:"btn", value:[{name:"20180612",id:0},{name:"20180612",id:1},{name:"20180612",id:2}]}
+		],
+		currentModule:{
+			key:"header"
 		}
+
+		
     }
   },
   computed:{
