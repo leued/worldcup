@@ -28,7 +28,6 @@ export default {
   computed:{
   	gamelist(){
   		var gamelist =[];
-  		console.log(this.configData.gamelist)
   		for(let i=0;i<this.configData.gamelist.length;i++){
   			if(this.configData.gamelist[i].time == this.configData.currentdate){
   				gamelist = this.configData.gamelist[i].data;

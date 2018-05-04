@@ -3,8 +3,8 @@
 		<div domIndex="0" class="time" :class="{domOn:domIndex==0}"><span>猜胜负</span></div>
 		<div>
 			<game :configData="configData"></game>
-		<!-- 	<champion></champion>
-			<score></score> -->
+			<champion></champion>
+			<score></score>
 		</div>
 		
   	</div>
@@ -31,6 +31,7 @@ export default {
   methods: {
 		move(){
 			let me  = this;
+			// this.forEachPlayer();
 			document.onkeydown=function(e){
 	  			e=window.event||e;
 			  	switch(e.keyCode){
