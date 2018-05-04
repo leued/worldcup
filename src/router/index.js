@@ -8,28 +8,7 @@ export default new Router({
     {
       path: '/',
       name: 'HelloWorld',
-      component: () => import ('@/components/HelloWorld')
-    },
-    {
-      path: '/main',
-      name: 'main',
-      component: () => import ('@/components/layout/main'),
-      children : [
-        {
-          path: 'index',
-          name: 'index',
-          component: () => import ('@/pages/index/index')
-        },{
-          path: 'test',
-          name: 'test',
-          component: () => import ('@/pages/test/index')
-        },
-        {
-          path: 'table',
-          name: 'table',
-          component: () => import ('@/pages/test/table')
-        }
-      ]
+      component: () => import ('@/pages/index/index')
     }
     
   ]

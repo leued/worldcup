@@ -5,23 +5,16 @@
 <script>
 import Vue from 'vue';
 export default {
-  name: 'index',
+  name: 'score',
   data () {
     return {
-		
-    }
-  },
-  computed:{
-
-  },
-  methods: {
-		
-  },
-  mounted(){
+       
+      }
   }
 }
 </script>
 
-<style lang="less" >
-	
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
 </style>

@@ -5,6 +5,60 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>louyu</title>
   </head>
+  <script>
+  	const configData = {
+	    date:["20180601","20180602"], //所有的日期
+	    currentdate:"20180601",//进入页面当前时间
+	    gamelist:[ //请求+拼接数据
+	        {
+	            time:"20180601",
+	            data:[{
+	                left:"milu",
+	                right:"helan",
+	                id:"20180601-milu-helan",//单场比赛id
+	                starttime:"12:00",
+	                chosen:null, //默认是null
+	                result:null //默认是null
+	            },{
+	                left:"milu",
+	                right:"helan",
+	                id:"20180601-milu-helan",//单场比赛id
+	                starttime:"12:00",
+	                chosen:null,
+	                result:null
+	            }]
+	        },
+	        {
+	            time:"20180601",
+	            data:[{
+	                left:"milu",
+	                right:"helan",
+	                id:"20180601-milu-helan",//单场比赛id
+	                starttime:"12:00",
+	                chosen:null, //默认是null
+	                result:null //默认是null
+	            },{
+	                left:"milu",
+	                right:"helan",
+	                id:"20180601-milu-helan",//单场比赛id
+	                starttime:"12:00",
+	                chosen:null,
+	                result:null
+	            }]
+	        }
+	    ],
+	    teamgroup:[
+	        ["milu","helan","agenting","deguo"],
+	        ["milu","helan","agenting","deguo"]
+	    ],
+	    teamlist:{
+	        "milu":"秘鲁",
+	        "helan":"荷兰"
+	    },
+	    scorelist:{}
+	 
+	}
+  </script>
   <body>
     <div id="app"></div>
     <!-- built files will be auto injected -->
