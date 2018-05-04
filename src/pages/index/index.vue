@@ -1,6 +1,10 @@
 <template>
   	<div>
-		<div domIndex="0" class="time" :class="{domOn:domIndex==0}"><span>猜胜负</span></div>
+		<div class="time">
+			<span>猜胜负</span>
+			<span>猜冠军</span>
+			<span>积分榜</span>
+		</div>
 		<div>
 			<game :configData="configData"></game>
 			<champion></champion>
