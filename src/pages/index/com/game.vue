@@ -1,6 +1,6 @@
 <template>
   	<div>
-		<div domIndex="1" class="time">{{configData.currentdate}}</div>
+		<div class="time">{{configData.currentdate}}</div>
 		<div class="player">
 			<div  class="g-flexbox wrapbox" v-for="(i,index) in gamelist" >
 				<div class="g-flex box">{{configData.teamlist[i.left]}}</div>
@@ -19,10 +19,10 @@
 <script>
 export default {
   name: 'game',
-  props:['configData'],
   data () {
     return {
-		
+		configData:configData,
+
     }
   },
   computed:{

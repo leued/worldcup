@@ -6,7 +6,7 @@
 			<span v-bind:class="{'on':containerIndex==0&&tabIndex==2}">积分榜</span>
 		</div>
 		<div>
-			<game v-show="tabIndex==0" :configData="configData"></game>
+			<game v-show="tabIndex==0"></game>
 			<champion v-show="tabIndex==1"></champion>
 			<score v-show="tabIndex==2"></score>
 		</div>
@@ -30,9 +30,7 @@ export default {
     }
   },
   components:{game,champion,score},
-  computed:{
-
-  },
+  computed:{},
   methods: {
 		move(){
 			let me  = this;
@@ -61,17 +59,40 @@ export default {
 			}
 		},
 		setX(direction){
-			if(direction=='left' && this.tabIndex>0){
-				this.tabIndex--;
-			}else if(direction=='right' && this.tabIndex<2){
-				this.tabIndex++;
+			switch(direction){
+				case "left":
+				if(this.containerIndex==0 && this.tabIndex>0){
+					this.tabIndex--;
+				}else{
+					this.$bus.$emit()
+				}
+				break;
+				case "right":
+				if(this.containerIndex==0 && this.tabIndex<2){
+					this.tabIndex++;
+				}else{
+					this.$bus.$emit()
+				}
+				break;
 			}
+			
 		},
-		setY(){}
+		setY(direction){
+			switch(direction){
+				case "up":
+				break;
+				case "down":
+				// if(this.containerIndex == 0){
+				// 	this.containerIndex++;
+				// }
+				// this.$bus.$emit()
+				break;
+			}
+		}
 
   },
   mounted(){
-	 this.move();
+	this.move();
   }
 }
 </script>
