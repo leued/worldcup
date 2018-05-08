@@ -11,7 +11,7 @@ le.install =function(Vue) {
 
   // Vue.prototype.$c = $c;
   Vue.$c = $c;
-  Vue.$bus = new Vue();
+  Vue.prototype.$bus = new Vue();
 
   Object.assign(Vue,$http)
 }

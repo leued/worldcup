@@ -1,16 +1,15 @@
 <template>
   	<div>
 		<div class="time">
-			<span v-bind:class="{'on':containerIndex==0&&tabIndex==0}">猜胜负</span>
-			<span v-bind:class="{'on':containerIndex==0&&tabIndex==1}">猜冠军</span>
-			<span v-bind:class="{'on':containerIndex==0&&tabIndex==2}">积分榜</span>
+			<span v-bind:class="{'on':setLight(0)}">猜胜负</span>
+			<span v-bind:class="{'on':setLight(1)}">猜冠军</span>
+			<span v-bind:class="{'on':setLight(2)}">积分榜</span>
 		</div>
 		<div>
-			<game v-show="tabIndex==0"></game>
-			<champion v-show="tabIndex==1"></champion>
-			<score v-show="tabIndex==2"></score>
+			<game v-show="tabIndex==0" :containerIndex="containerIndex"></game>
+			<champion v-show="tabIndex==1" :containerIndex="containerIndex"></champion>
+			<score v-show="tabIndex==2" :containerIndex="containerIndex"></score>
 		</div>
-		
   	</div>
 </template>
 
@@ -64,14 +63,14 @@ export default {
 				if(this.containerIndex==0 && this.tabIndex>0){
 					this.tabIndex--;
 				}else{
-					this.$bus.$emit()
+					this.$bus.$emit("move","left")
 				}
 				break;
 				case "right":
 				if(this.containerIndex==0 && this.tabIndex<2){
 					this.tabIndex++;
 				}else{
-					this.$bus.$emit()
+					this.$bus.$emit("move","right")
 				}
 				break;
 			}
@@ -80,14 +79,21 @@ export default {
 		setY(direction){
 			switch(direction){
 				case "up":
+				if(this.$children[this.tabIndex].lightIndex==1){
+					this.containerIndex = 0;
+				}
+				this.$bus.$emit("move","up")
 				break;
 				case "down":
-				// if(this.containerIndex == 0){
-				// 	this.containerIndex++;
-				// }
-				// this.$bus.$emit()
+				if(this.containerIndex == 0){
+					this.containerIndex++;
+				}
+				this.$bus.$emit("move","down")
 				break;
 			}
+		},
+		setLight(index){
+			return this.containerIndex==0 && this.tabIndex==index
 		}
 
   },
