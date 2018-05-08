@@ -1,14 +1,14 @@
 <template>
   	<div>
 		<div class="time">
-			<span>猜胜负</span>
-			<span>猜冠军</span>
-			<span>积分榜</span>
+			<span v-bind:class="{'on':containerIndex==0&&tabIndex==0}">猜胜负</span>
+			<span v-bind:class="{'on':containerIndex==0&&tabIndex==1}">猜冠军</span>
+			<span v-bind:class="{'on':containerIndex==0&&tabIndex==2}">积分榜</span>
 		</div>
 		<div>
-			<game :configData="configData"></game>
-			<champion></champion>
-			<score></score>
+			<game v-show="tabIndex==0" :configData="configData"></game>
+			<champion v-show="tabIndex==1"></champion>
+			<score v-show="tabIndex==2"></score>
 		</div>
 		
   	</div>
@@ -25,7 +25,8 @@ export default {
   data () {
     return {
 		configData:configData,
-		domIndex:0,          //页面元素索引
+		containerIndex:0,
+		tabIndex:0,
     }
   },
   components:{game,champion,score},
@@ -46,20 +47,27 @@ export default {
 				      	me.setX("left");
 				     	break;
 				    case 38: //向上键
-				    	me.setDomY("up")
+				    	me.setY("up")
 				      break;
 				    case 39: //右键
 			      		me.setX("right");
 				      	break;
 				    case 40: //向下键
-				    	me.setDomY("down")
+				    	me.setY("down")
 				      	break;
 				    default:
 				      	break;
 			  	}
 			}
 		},
-
+		setX(direction){
+			if(direction=='left' && this.tabIndex>0){
+				this.tabIndex--;
+			}else if(direction=='right' && this.tabIndex<2){
+				this.tabIndex++;
+			}
+		},
+		setY(){}
 
   },
   mounted(){
@@ -82,7 +90,7 @@ export default {
 		-ms-flex:1.0; /* Internet Explorer 10 */
 		flex:1.0;
 	}
-	.domOn{
+	.on{
 		border: 1px solid red;
 	}
 	.time{

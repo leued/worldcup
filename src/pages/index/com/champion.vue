@@ -1,5 +1,5 @@
 <template>
-  	<div></div>
+  	<div>猜冠军</div>
 </template>
 
 <script>

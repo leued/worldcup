@@ -1,5 +1,5 @@
 <template>
-  	<div></div>
+  	<div>积分榜</div>
 </template>
 
 <script>
