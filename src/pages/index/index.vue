@@ -79,13 +79,13 @@ export default {
 		setY(direction){
 			switch(direction){
 				case "up":
-				if(this.$children[this.tabIndex].lightIndex==1){
+				if(this.$children[this.tabIndex].section==1){
 					this.containerIndex = 0;
 				}
 				this.$bus.$emit("move"+this.tabIndex,"up")
 				break;
 				case "down":
-				if(this.containerIndex == 0){
+				if(this.containerIndex == 0 && this.tabIndex!=2){
 					this.containerIndex++;
 				}
 				this.$bus.$emit("move"+this.tabIndex,"down")
@@ -116,9 +116,6 @@ export default {
 		-webkit-flex:1.0; /* Safari and Chrome */
 		-ms-flex:1.0; /* Internet Explorer 10 */
 		flex:1.0;
-	}
-	.on{
-		border: 1px solid red;
 	}
 	.time{
 		width: 400px;
@@ -161,5 +158,8 @@ export default {
 	.box_2  span.on{
 		background: red;
 		color: #fff;
+	}
+	.on{
+		border: 1px solid red;
 	}
 </style>

@@ -1,8 +1,8 @@
 <template>
   	<div>
 	  	<div class="player">
-	  		<div class="g-flexbox wrapbox" v-bind:class="{'on':setLight(1+index)}" v-for="item,index in configData.teamgroup">
-	  			<div class="g-flex box" v-for="item2,index2 in item">{{configData.teamlist[item2]}}</div>
+	  		<div class="g-flexbox wrapbox" v-for="item,index in configData.teamgroup">
+	  			<div class="g-flex box"  v-bind:class="{'on':setLight(index2,1+index)}" v-for="item2,index2 in item">{{configData.teamlist[item2]}}</div>
 	  		</div>
 	  	</div>
   	</div>
@@ -16,12 +16,31 @@ export default {
   data () {
     return {
        configData:configData,
-       lightIndex:0
+       section:0,//猜冠军的模块标志，模块个数根据teamgroup来判定
+       sectionX:0 //每个section x方向的位置标志
       }
   },
   methods: {
-		setLight(index){
-			return this.lightIndex == index && this.containerIndex==1
+		setLight(x,y){
+			return this.section == y && this.sectionX==x && this.containerIndex==1
+		},
+		handleUp(){
+			const me = this;
+			me.section !=0 && me.section --
+		},
+		handleDown(){
+			const me = this;
+			me.section < me.configData.teamgroup.length && me.section ++
+		},
+		handleLeft(){
+			if(this.sectionX!=0){
+				this.sectionX--
+			}
+		},
+		handleRight(){
+			if(this.sectionX!=this.configData.teamgroup[0].length-1){
+				this.sectionX++
+			}
 		}
   },
   mounted(){
@@ -29,15 +48,16 @@ export default {
   	this.$bus.$on('move1',function(direction){
   		switch(direction){
   			case "up":
-  			me.lightIndex !=0 && me.lightIndex --
+  			me.handleUp();
   			break;
   			case "down":
-  			// console.log(me.configData.teamgroup.length)
-  			me.lightIndex < me.configData.teamgroup.length && me.lightIndex ++
+  			me.handleDown();
   			break;
   			case "left":
+  			me.handleLeft();
   			break;
   			case "right":
+  			me.handleRight();
   			break;
   		}
   	})
