@@ -45,7 +45,7 @@ export default {
   },
   mounted(){
   	const me = this;
-  	this.$bus.$on('move',function(direction){
+  	this.$bus.$on('move0',function(direction){
   		switch(direction){
   			case "up":
   			me.lightIndex !=0 && me.lightIndex --

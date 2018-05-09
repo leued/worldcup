@@ -63,14 +63,14 @@ export default {
 				if(this.containerIndex==0 && this.tabIndex>0){
 					this.tabIndex--;
 				}else{
-					this.$bus.$emit("move","left")
+					this.$bus.$emit("move"+this.tabIndex,"left")
 				}
 				break;
 				case "right":
 				if(this.containerIndex==0 && this.tabIndex<2){
 					this.tabIndex++;
 				}else{
-					this.$bus.$emit("move","right")
+					this.$bus.$emit("move"+this.tabIndex,"right")
 				}
 				break;
 			}
@@ -82,13 +82,13 @@ export default {
 				if(this.$children[this.tabIndex].lightIndex==1){
 					this.containerIndex = 0;
 				}
-				this.$bus.$emit("move","up")
+				this.$bus.$emit("move"+this.tabIndex,"up")
 				break;
 				case "down":
 				if(this.containerIndex == 0){
 					this.containerIndex++;
 				}
-				this.$bus.$emit("move","down")
+				this.$bus.$emit("move"+this.tabIndex,"down")
 				break;
 			}
 		},
