@@ -62,7 +62,10 @@ export default {
 		  		case 2:
 		  		if(me.game.y!=0){
 		  			me.game.y--
+		  		}else{
+		  			me.section --
 		  		}
+		  		break;
 		  		case 3:
 		  		me.section --
 		  		break;
