@@ -24,7 +24,7 @@ export default {
   data () {
     return {
 		configData:configData,
-		section:0,
+		section:0,//页面的section划分，主页共两个
 		tabIndex:0,
     }
   },
@@ -86,14 +86,22 @@ export default {
 			}
 		},
 		setUp(){
-			if(this.$children[this.tabIndex].section==1){
-				this.section = 0;
+			switch(this.section){
+				case 1:
+				if(this.$children[this.tabIndex].section==1){
+					this.section = 0;
+				}
+				break;
 			}
 			this.$bus.$emit("move"+this.tabIndex,"up")
 		},
 		setDown(){
-			if(this.section == 0 && this.tabIndex!=2){
-				this.section++;
+			switch(this.section){
+				case 0:
+				if(this.tabIndex!=2){
+					this.section++;
+				}
+				break;
 			}
 			this.$bus.$emit("move"+this.tabIndex,"down")
 		},
