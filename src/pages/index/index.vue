@@ -38,7 +38,7 @@ export default {
 	  			e=window.event||e;
 			  	switch(e.keyCode){
 				  	case 13:
-				  		me.enterPlay();
+				  		me.comfirm();
 				  		break;
 				    case 37: //左键
 				      	me.setLeft();
@@ -56,6 +56,9 @@ export default {
 				      	break;
 			  	}
 			}
+		},
+		comfirm(){
+			this.$bus.$emit("comfirm"+this.tabIndex);
 		},
 		setLeft(){
 			switch(this.section){
@@ -111,11 +114,25 @@ export default {
 
   },
   mounted(){
+  	const me = this;
 	this.move();
+	this.$bus.$on("dateChange",function(index){
+		me.configData.currentdate = me.configData.date[index]
+	})
 	// console.log(this)
 	// Vue.axios.get('http://worldcup.beta.scloud.letv.cn/h5/home/getlist',{}).then(function(response){
 	// 	console.log(response.data)
 	// })
+  },
+  beforeRouteEnter(to,from,next){
+  	Vue.axios.get('http://worldcup.beta.scloud.letv.cn/h5/home/GetJsonStrByUid',{
+  		params:{
+  			uid:2
+  		}
+  	}).then(function(response){
+		configData = response.data.data;
+		next()
+	})
   }
 }
 </script>
@@ -168,14 +185,11 @@ export default {
 		display:inline-block;
 		width: 50px;
 	}
-	.box_2  span.on2{
+	.box_2  span.chosen{
 		background: red;
 		color: #fff;
 	}
-	.box_2  span.on{
-		background: red;
-		color: #fff;
-	}
+
 	.on{
 		border: 1px solid red;
 	}
