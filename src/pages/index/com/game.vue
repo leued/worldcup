@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 export default {
   name: 'game',
   props:["psection"],
@@ -140,6 +141,37 @@ export default {
 				"2":0
 			}
 			return map[i]
+		},
+		save(){
+			const me = this;
+			var value =[];
+			for(let i=0;i<me.gamelist.length;i++){
+				value.push({
+			        id:me.gamelist[i].id,
+			        chosen:me.gamelist[i].chosen
+			    })
+			}
+			Vue.axios({
+				url:'http://worldcup.beta.scloud.letv.cn/h5/home/add',
+				method:"post",
+			    headers:{
+			        'Content-type': 'application/x-www-form-urlencoded'
+			    },
+			    data:{
+			    	uid:2,
+			  		date:me.configData.currentdate,
+			  		value:JSON.stringify(value)
+			    }
+			}).then(function(r){
+				console.log(r.data)
+			})
+			// Vue.axios.post('http://worldcup.beta.scloud.letv.cn/h5/home/add',{
+		 //  		uid:2,
+		 //  		date:me.configData.currentdate,
+		 //  		value:JSON.stringify(value)
+		 //  	}).then(function(response){
+		 //  		console.log(response.data)
+			// })
 		}
   },
   mounted(){
@@ -167,6 +199,7 @@ export default {
   			me.configData.gamelist[me.gameindex].data[me.game.y].chosen = me.maps(me.game.x);
   			break;
   			case 3:
+  			me.save();
   			break;
   		}
   	});

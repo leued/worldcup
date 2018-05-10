@@ -119,10 +119,6 @@ export default {
 	this.$bus.$on("dateChange",function(index){
 		me.configData.currentdate = me.configData.date[index]
 	})
-	// console.log(this)
-	// Vue.axios.get('http://worldcup.beta.scloud.letv.cn/h5/home/getlist',{}).then(function(response){
-	// 	console.log(response.data)
-	// })
   },
   beforeRouteEnter(to,from,next){
   	Vue.axios.get('http://worldcup.beta.scloud.letv.cn/h5/home/GetJsonStrByUid',{
