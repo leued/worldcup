@@ -6,9 +6,9 @@
 			<span v-bind:class="{'on':setLight(2)}">积分榜</span>
 		</div>
 		<div>
-			<game v-show="tabIndex==0" :containerIndex="containerIndex"></game>
-			<champion v-show="tabIndex==1" :containerIndex="containerIndex"></champion>
-			<score v-show="tabIndex==2" :containerIndex="containerIndex"></score>
+			<game v-show="tabIndex==0" :psection="section"></game>
+			<champion v-show="tabIndex==1" :psection="section"></champion>
+			<score v-show="tabIndex==2" :psection="section"></score>
 		</div>
   	</div>
 </template>
@@ -24,7 +24,7 @@ export default {
   data () {
     return {
 		configData:configData,
-		containerIndex:0,
+		section:0,
 		tabIndex:0,
     }
   },
@@ -41,64 +41,73 @@ export default {
 				  		me.enterPlay();
 				  		break;
 				    case 37: //左键
-				      	me.setX("left");
+				      	me.setLeft();
 				     	break;
 				    case 38: //向上键
-				    	me.setY("up")
+				    	me.setUp()
 				      break;
 				    case 39: //右键
-			      		me.setX("right");
+			      		me.setRight();
 				      	break;
 				    case 40: //向下键
-				    	me.setY("down")
+				    	me.setDown()
 				      	break;
 				    default:
 				      	break;
 			  	}
 			}
 		},
-		setX(direction){
-			switch(direction){
-				case "left":
-				if(this.containerIndex==0 && this.tabIndex>0){
+		setLeft(){
+			switch(this.section){
+				case 0:
+				if(this.tabIndex>0){
 					this.tabIndex--;
 				}else{
 					this.$bus.$emit("move"+this.tabIndex,"left")
 				}
 				break;
-				case "right":
-				if(this.containerIndex==0 && this.tabIndex<2){
+				case 1:
+				this.$bus.$emit("move"+this.tabIndex,"left");
+				break
+			}
+		},
+		setRight(){
+			switch(this.section){
+				case 0:
+				if(this.tabIndex<2){
 					this.tabIndex++;
 				}else{
 					this.$bus.$emit("move"+this.tabIndex,"right")
 				}
 				break;
+				case 1:
+				this.$bus.$emit("move"+this.tabIndex,"right")
+				break
 			}
-			
 		},
-		setY(direction){
-			switch(direction){
-				case "up":
-				if(this.$children[this.tabIndex].section==1){
-					this.containerIndex = 0;
-				}
-				this.$bus.$emit("move"+this.tabIndex,"up")
-				break;
-				case "down":
-				if(this.containerIndex == 0 && this.tabIndex!=2){
-					this.containerIndex++;
-				}
-				this.$bus.$emit("move"+this.tabIndex,"down")
-				break;
+		setUp(){
+			if(this.$children[this.tabIndex].section==1){
+				this.section = 0;
 			}
+			this.$bus.$emit("move"+this.tabIndex,"up")
+		},
+		setDown(){
+			if(this.section == 0 && this.tabIndex!=2){
+				this.section++;
+			}
+			this.$bus.$emit("move"+this.tabIndex,"down")
 		},
 		setLight(index){
-			return this.containerIndex==0 && this.tabIndex==index
+			return this.section==0 && this.tabIndex==index
 		}
 
   },
   mounted(){
 	this.move();
+	// console.log(this)
+	// Vue.axios.get('http://worldcup.beta.scloud.letv.cn/h5/home/getlist',{}).then(function(response){
+	// 	console.log(response.data)
+	// })
   }
 }
 </script>

@@ -1,6 +1,8 @@
 <template>
   	<div>
-		<div v-bind:class="{'on':setLight(1)}" class="time">{{configData.currentdate}}</div>
+		<div class="time">
+			<span  v-bind:class="{'on':setLight(1)}" v-for="item in configData.date">{{item}}</span>
+		</div>
 		<div class="player">
 			<div class="g-flexbox wrapbox" v-for="(i,index) in gamelist">
 				<div class="g-flex box">{{configData.teamlist[i.left]}}</div>
@@ -19,7 +21,7 @@
 <script>
 export default {
   name: 'game',
-  props:["containerIndex"],
+  props:["psection"],
   data () {
     return {
 		configData:configData,
@@ -46,35 +48,60 @@ export default {
 		setLight(section,y=null,x=null){
 			if(x!=null&&y!=null){
 				return this.section == section && this.game.x==x
-			       && this.game.y==y && this.containerIndex==1
+			       && this.game.y==y && this.psection==1
 			   }else{
-			   	return this.section == section && this.containerIndex==1
+			   	return this.section == section && this.psection==1
 			   }
 		},
 		handleUp(){
 		  	const me = this;
-		  	if(me.section==2&&me.game.y!=0){
-		  		me.game.y--;
-		  	}else{
-		  		me.section !=0 && me.section --
+		  	switch(me.section){
+		  		case 1:
+		  		me.section --
+		  		break;
+		  		case 2:
+		  		if(me.game.y!=0){
+		  			me.game.y--
+		  		}
+		  		case 3:
+		  		me.section --
+		  		break;
 		  	}
 		 },
 		handleDown(){
 		  	const me = this;
-		  	if(me.section==2&&me.game.y!=me.gamelist.length-1){
-		  		me.game.y++;
-		  	}else{
-		  		me.section < 3 && me.section ++
+		  	switch(me.section){
+		  		case 0:
+		  		me.section ++
+		  		break;
+		  		case 1:
+		  		me.section ++
+		  		break;
+		  		case 2:
+		  		if(me.game.y!=me.gamelist.length-1){
+		  			me.game.y++;
+		  		}else{
+		  			me.section ++
+		  		}
+		  		break;
 		  	}
 		},
 		handleLeft(){
-			if(this.section ==2 && this.game.x!=0){
-				this.game.x--
+			switch(this.section){
+				case 2:
+				if(this.game.x!=0){
+					this.game.x--
+				}
+				break;
 			}
 		},
 		handleRight(){
-			if(this.section ==2 && this.game.x!=2){
-				this.game.x++
+			switch(this.section){
+				case 2:
+				if(this.game.x!=2){
+					this.game.x++
+				}
+				break;
 			}
 		}
   },

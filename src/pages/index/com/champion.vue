@@ -12,7 +12,7 @@
 import Vue from 'vue';
 export default {
   name: 'champion',
-  props:["containerIndex"],
+  props:["psection"],
   data () {
     return {
        configData:configData,
@@ -22,7 +22,7 @@ export default {
   },
   methods: {
 		setLight(x,y){
-			return this.section == y && this.sectionX==x && this.containerIndex==1
+			return this.section == y && this.sectionX==x && this.psection==1
 		},
 		handleUp(){
 			const me = this;
