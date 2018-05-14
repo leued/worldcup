@@ -10,6 +10,9 @@
 
 		resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
 		var clientWidth = docEl.clientWidth;
+		if(clientWidth/docEl.clientHeight>1920/1080){
+			clientWidth = parseInt(1920/1080*docEl.clientHeight)
+		}
 		if (!clientWidth) {return;}
 	    docEl.style.fontSize =  clientWidth/10 + 'px';
 	    bodyEl.style.maxWidth =  clientWidth + 'px';
