@@ -1,8 +1,11 @@
 <template>
   	<div>
-	  	<div class="player">
-	  		<div class="g-flexbox wrapbox" v-for="item,index in configData.teamgroup">
-	  			<div class="g-flex box"  v-bind:class="{'on':setLight(index2,1+index)}" v-for="item2,index2 in item">{{configData.teamlist[item2]}}</div>
+	  	<div class="champion">
+	  		<div class="teambox" v-for="item,index in configData.teamgroup">
+	  			<div class="teamitem"  v-bind:class="{'on':setLight(index2,1+index)}" v-for="item2,index2 in item">
+		  			<img :src="imgroute+item2+'.png'" alt="">
+		  			<span style="color:#fff">{{configData.teamlist[item2]}}</span>
+	  			</div>
 	  		</div>
 	  	</div>
   	</div>
@@ -16,6 +19,7 @@ export default {
   data () {
     return {
        configData:configData,
+       imgroute:imgroute,
        section:0,//猜冠军的模块标志，模块个数根据teamgroup来判定
        sectionX:0 //每个section x方向的位置标志
       }

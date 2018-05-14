@@ -41,7 +41,8 @@ a {
 	flex:1.0;*/
 }
 #app{
-	background: #0269dc;
+	background: url(../bigbg.png) center;
+	background-size: cover;
 	position: fixed;
     width: 100%;
     height: 100%;
@@ -160,6 +161,12 @@ a {
 	border-radius: 5px;
 	border: 1px solid #C2AD84;
 }
+.box_2 .on{
+	color: #003162;
+	background: #fff;
+	box-sizing: border-box;
+	border: 1px solid #fff;
+}
 .game{
 	background: url(../gamebg.png);
 	width: 330/@base;
@@ -222,5 +229,28 @@ a {
     	margin: 0 auto;
     	border: none;
     	color: #fff;
+	}
+}
+.champion{
+	width:976/@base;
+	position: relative;
+	top:74/@base;
+	margin:0 auto;
+	.teambox{
+		display:-moz-flex; 
+		display:-webkit-flex; 
+		display:-ms-flexbox; 
+		display:flex;
+		margin-bottom: 36/@base;
+		.teamitem{
+			flex: 1;
+			font-size:20/@base;
+			text-align: center;
+			img{
+				width:102/@base;
+				height: 50/@base;
+			}
+			
+		}
 	}
 }
