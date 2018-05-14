@@ -14,6 +14,21 @@
 </template>
 
 <script>
+/*登录模块*/
+(function(){
+	function goLogin(){
+		var api = {"action":"com.stv.t2.account","extra":{"type":1,"value":"{\"go_record\":\"true\",\"go_account_center\":\"false\",\"status_code\":\"0\"}","from":"com.stv.ucenter"}};
+    	window.LetvFish && window.LetvFish.startIntentWithParms(JSON.stringify(api));
+	}
+	if(window.LetvFish && window.LetvFish.getDeviceUid()){
+		window.UID = window.LetvFish && window.LetvFish.getDeviceUid();
+    }else{
+        goLogin();
+    }
+    window.OnStvBrowserResume = function(){
+    	window.UID = window.LetvFish && window.LetvFish.getDeviceUid() || '';
+    }
+})();
 import Vue from 'vue';
 import game from './com/game';
 import champion from './com/champion';
@@ -26,6 +41,7 @@ export default {
 		configData:configData,
 		section:0,//页面的section划分，主页共两个
 		tabIndex:0,
+		uid:window.UID
     }
   },
   components:{game,champion,score},

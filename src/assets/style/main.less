@@ -7,6 +7,7 @@ body{
 	-webkit-text-size-adjust: none; /*mobile 禁用浏览器的文字大小调整功能*/
 	-webkit-user-select: none; /*mobile文本不能被选择*/
 	margin: 0 auto;
+	background: #fff;
 }
 input{
 	font-family:'Microsoft Yahei','Lucida Grande','Helvetica','Arial','Verdana','sans-serif';
@@ -24,4 +25,17 @@ table {
 }
 a {
     text-decoration: none;
+}
+
+.g-flexbox{
+	display:-moz-flex; /* Firefox */
+	display:-webkit-flex; /* Safari and Chrome */
+	display:-ms-flexbox; /* Internet Explorer 10 */
+	display:flex;
+}
+.g-flex{
+	-moz-flex:1.0; /* Firefox */
+	-webkit-flex:1.0; /* Safari and Chrome */
+	-ms-flex:1.0; /* Internet Explorer 10 */
+	flex:1.0;
 }
