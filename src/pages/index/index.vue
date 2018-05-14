@@ -1,9 +1,9 @@
 <template>
-  	<div>
-		<div class="time">
-			<span v-bind:class="{'on':setLight(0)}">猜胜负</span>
-			<span v-bind:class="{'on':setLight(1)}">猜冠军</span>
-			<span v-bind:class="{'on':setLight(2)}">积分榜</span>
+  	<div class="main">
+		<div class="tab">
+			<span v-bind:class="{'tabon':setLight(0)}">猜胜负</span>
+			<span v-bind:class="{'tabon':setLight(1)}">猜冠军</span>
+			<span v-bind:class="{'tabon':setLight(2)}">积分榜</span>
 		</div>
 		<div>
 			<game v-show="tabIndex==0" :psection="section"></game>
@@ -125,7 +125,7 @@ export default {
 			this.$bus.$emit("move"+this.tabIndex,"down")
 		},
 		setLight(index){
-			return this.section==0 && this.tabIndex==index
+			return this.tabIndex==index
 		}
 
   },
@@ -151,58 +151,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" >
-	.g-flexbox{
-		display:-moz-flex; /* Firefox */
-		display:-webkit-flex; /* Safari and Chrome */
-		display:-ms-flexbox; /* Internet Explorer 10 */
-		display:flex;
-	}
-	.g-flex{
-		-moz-flex:1.0; /* Firefox */
-		-webkit-flex:1.0; /* Safari and Chrome */
-		-ms-flex:1.0; /* Internet Explorer 10 */
-		flex:1.0;
-	}
-	.time{
-		width: 400px;
-		margin: 0 auto;	
-	}
-	.player{
-		//height: 200px;
-		overflow-y:auto;
-	}
-	.wrapbox{
-		width: 400px;
-		height: 30px;
-		margin: 20px auto;
-		line-height: 30px;
-		padding: 40px;
-	}
-	.wrapbox.current{
-		border: 1px solid blue;
-	}
-	.box{
-		margin: 0 10px;
-		border: 1px solid blue;
-		text-align: center;
-		font-size: 14px;
-		span{
-			color: red;
-		}
-	}
-	.box_2{
-		border: none;
-	}
-	.box_2  span{
-		display:inline-block;
-		width: 50px;
-	}
-	.box_2  span.chosen{
-		background: red;
-		color: #fff;
-	}
 
-	.on{
-		border: 1px solid red;
-	}
 </style>

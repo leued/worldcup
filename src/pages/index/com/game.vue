@@ -1,20 +1,22 @@
 <template>
   	<div>
 		<div class="time">
+		    <i class="left"></i>
 			<span  v-bind:class="{'on':setLight(1,index)}" v-for="item,index in configData.date">{{item}}</span>
+			<i class="right"></i>
 		</div>
 		<div class="player">
 			<div class="g-flexbox wrapbox" v-for="(i,index) in gamelist">
-				<div class="g-flex box">{{configData.teamlist[i.left]}}</div>
+				<div class=" game box">{{configData.teamlist[i.left]}}</div>
 				<div class="box box_2">
 					<span v-bind:class="{'on':setLight(2,0,index),'chosen':setChosen(index,3)}">胜</span>
 					<span v-bind:class="{'on':setLight(2,1,index),'chosen':setChosen(index,1)}">平</span>	
 					<span v-bind:class="{'on':setLight(2,2,index),'chosen':setChosen(index,0)}">负</span>
 				</div>
-				<div class="g-flex box">{{configData.teamlist[i.right]}}</div>
+				<div class="game box">{{configData.teamlist[i.right]}}</div>
   			</div>
 		</div>
-		<div v-bind:class="{'on':setLight(3)}">提交</div>
+		<div class="submit" v-bind:class="{'on':setLight(3)}"></div>
   	</div>
 </template>
 
@@ -52,7 +54,7 @@ export default {
 		setLight(section,x=null,y=null){
 			switch(section){
 				case 1:
-				return this.section == section && x == this.section1x  && this.psection==1;
+				return x == this.section1x ;
 				break;
 				case 2:
 				return this.section == section && this.game.x==x && this.game.y==y && this.psection==1

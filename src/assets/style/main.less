@@ -1,3 +1,4 @@
+@base:192rem;
 body, dl, dd, h1, h2, h3, h4, h5, h6, p, form{
 	margin:0;
 }
@@ -12,7 +13,7 @@ body{
 input{
 	font-family:'Microsoft Yahei','Lucida Grande','Helvetica','Arial','Verdana','sans-serif';
 }
-ol, ul{
+*{
 	margin:0; 
 	padding:0;
 }
@@ -28,14 +29,198 @@ a {
 }
 
 .g-flexbox{
-	display:-moz-flex; /* Firefox */
-	display:-webkit-flex; /* Safari and Chrome */
-	display:-ms-flexbox; /* Internet Explorer 10 */
-	display:flex;
+	/*display:-moz-flex; 
+	display:-webkit-flex; 
+	display:-ms-flexbox; 
+	display:flex;*/
 }
 .g-flex{
-	-moz-flex:1.0; /* Firefox */
-	-webkit-flex:1.0; /* Safari and Chrome */
-	-ms-flex:1.0; /* Internet Explorer 10 */
-	flex:1.0;
+	/*-moz-flex:1.0; 
+	-webkit-flex:1.0; 
+	-ms-flex:1.0;
+	flex:1.0;*/
+}
+#app{
+	background: #0269dc;
+	position: fixed;
+    width: 100%;
+    height: 100%;
+}
+.main{
+	background: url(../bg.png) center center;
+	width:1831/@base;
+	margin:254/@base auto;
+	position: relative;
+	height: 792/@base;
+/*	height: 100%;
+	position: fixed;*/
+	background-size: contain;
+	background-repeat: no-repeat;
+	.tab{
+		position: absolute;
+		top: -140/@base;
+		>span{
+			background: url(../tab.png) center bottom;
+			display: inline-block;
+			
+			height: 145/@base;
+			width: 246/@base;
+		    background-size: contain;
+		    background-repeat: no-repeat;
+		    line-height: 240/@base;
+		    color: #474030;
+		    font-size: 30/@base;
+    		text-align: center;
+    		position: absolute;
+		}
+		>span:nth-child(1){
+			left: 358/@base;
+		}
+		>span:nth-child(2){
+			left: 540/@base;
+			z-index: 5;
+		}
+		>span:nth-child(3){
+			left: 725/@base;
+		}
+		.tabon{
+			background: url(../tabon.png) center bottom;
+			 background-size: contain;
+		    background-repeat: no-repeat;
+		    z-index: 10;
+		/*    height: 140/@base;
+			width: 187/@base;*/
+			line-height: 245/@base;
+		    color: #F72627 ;
+		    font-size: 36/@base;
+		}
+	}
+}
+.g-flexbox{
+	
+}
+.g-flex{
+	/*-moz-flex:1.0; 
+	-webkit-flex:1.0; 
+	-ms-flex:1.0; 
+	flex:1.0;*/
+}
+.time{
+	width: 400px;
+	margin: 0 auto;	
+	font-size: 30/@base;
+}
+.player{
+	/*overflow-y:auto;*/
+	position: absolute;
+	font-size: 0;
+	top:90/@base;
+}
+.wrapbox{
+	/*width: 470px;
+	height: 30px;
+	margin: 20px auto;
+	line-height: 30px;
+	padding: 10px;*/
+	width: 970/@base;
+	position: relative;
+	left: 494/@base;
+	margin-bottom: 25/@base;
+}
+.wrapbox.current{
+	border: 1px solid blue;
+}
+
+.box{
+	
+	text-align: center;
+	font-size: 30/@base;
+	display: inline-block;
+
+
+    
+}
+.box_2{
+	border: none;
+	margin: 0 18/@base;
+}
+.box_2  span{
+	display:inline-block;
+	height: 50/@base;
+	width:50/@base;
+	font-size: 36/@base;
+    line-height: 50/@base;
+    box-sizing: border-box;
+    border: 1px solid #4c6e8f;
+    color: #4c6e8f;
+	border-radius: 5px;
+}
+.box_2  span.chosen{
+	color: #C2AD84;
+	border-radius: 5px;
+	border: 1px solid #C2AD84;
+}
+.game{
+	background: url(../gamebg.png);
+	width: 330/@base;
+	height: 90/@base;
+	line-height: 90/@base;
+	text-align: left;
+    padding-left: 30/@base;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: #FFFFFF;
+}
+
+.on{
+	color: #003162;
+	/*background: #fff;*/
+	box-sizing: border-box;
+	border: 1px solid #fff;
+}
+.submit{
+	text-align: center;
+    width: 222/@base;
+    height: 60/@base;
+    position: absolute;
+    left: 50%;
+    /*bottom: 100px;*/
+    top:552/@base;
+    margin-left: -111/@base;
+    background: url(../btn.png) center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.time{
+	top: 45/@base;
+    position: relative;
+    text-align: center;
+    .left{
+    	width:10px;
+    	height: 10px;
+    	display: inline-block;
+    	background: url(../arrow.png);
+    	background-repeat: no-repeat;
+    	background-size: contain;
+    	transform:rotate(180deg);
+    }
+    .right{
+    	width:10px;
+    	height: 10px;
+    	display: inline-block;
+    	background: url(../arrow.png);
+    	background-repeat: no-repeat;
+    	background-size: contain;
+    }
+	span{
+		display: none
+	}
+	.on{
+		display: inline-block;
+		width: 100px;
+    	margin: 0 auto;
+    	border: none;
+    	color: #fff;
+	}
 }
