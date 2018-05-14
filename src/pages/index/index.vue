@@ -1,15 +1,18 @@
 <template>
-  	<div class="main">
-		<div class="tab">
-			<span v-bind:class="{'tabon':setLight(0)}">猜胜负</span>
-			<span v-bind:class="{'tabon':setLight(1)}">猜冠军</span>
-			<span v-bind:class="{'tabon':setLight(2)}">积分榜</span>
-		</div>
-		<div>
-			<game v-show="tabIndex==0" :psection="section"></game>
-			<champion v-show="tabIndex==1" :psection="section"></champion>
-			<score v-show="tabIndex==2" :psection="section"></score>
-		</div>
+    <div>
+		<div class="title">竞猜世界杯</div>
+	  	<div class="main">
+			<div class="tab">
+				<span v-bind:class="{'tabon':setLight(0)}">猜胜负</span>
+				<span v-bind:class="{'tabon':setLight(1)}">猜冠军</span>
+				<span v-bind:class="{'tabon':setLight(2)}">积分榜</span>
+			</div>
+			<div>
+				<game v-show="tabIndex==0" :psection="section"></game>
+				<champion v-show="tabIndex==1" :psection="section"></champion>
+				<score v-show="tabIndex==2" :psection="section"></score>
+			</div>
+	  	</div>
   	</div>
 </template>
 

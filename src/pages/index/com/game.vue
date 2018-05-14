@@ -7,13 +7,21 @@
 		</div>
 		<div class="player">
 			<div class="g-flexbox wrapbox" v-for="(i,index) in gamelist">
-				<div class=" game box">{{configData.teamlist[i.left]}}</div>
+			    <div class="info">
+			    	<span>{{i.starttime}}</span>
+			    	<em>{{i.score?i.score:'-:-'}}</em>
+			    </div>
+				<div class="game box">{{configData.teamlist[i.left]}}
+				  <img :src="imgroute+i.left+'.png'" alt="">
+				</div>
 				<div class="box box_2">
 					<span v-bind:class="{'on':setLight(2,0,index),'chosen':setChosen(index,3)}">胜</span>
 					<span v-bind:class="{'on':setLight(2,1,index),'chosen':setChosen(index,1)}">平</span>	
 					<span v-bind:class="{'on':setLight(2,2,index),'chosen':setChosen(index,0)}">负</span>
 				</div>
-				<div class="game box">{{configData.teamlist[i.right]}}</div>
+				<div class="game box">{{configData.teamlist[i.right]}}
+				<img :src="imgroute+i.right+'.png'" alt="">
+				</div>
   			</div>
 		</div>
 		<div class="submit" v-bind:class="{'on':setLight(3)}"></div>
@@ -28,6 +36,7 @@ export default {
   data () {
     return {
 		configData:configData,
+		imgroute:imgroute,
 		game:{
 			x:0,
 			y:0

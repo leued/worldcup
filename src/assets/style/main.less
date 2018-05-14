@@ -47,7 +47,16 @@ a {
     width: 100%;
     height: 100%;
 }
+.title{
+	color: #ffffff;
+	font-size: 90/@base;
+	text-align: center;
+	width: 100%;
+	position: absolute;
+	top: 30/@base;
+}
 .main{
+
 	background: url(../bg.png) center center;
 	width:1831/@base;
 	margin:254/@base auto;
@@ -123,10 +132,34 @@ a {
 	margin: 20px auto;
 	line-height: 30px;
 	padding: 10px;*/
-	width: 970/@base;
+	width: 1068/@base;
 	position: relative;
-	left: 494/@base;
+	left: 396/@base;
 	margin-bottom: 25/@base;
+	.info{
+		position: relative;
+		width: 62/@base;
+		height: 90/@base;
+		/*display: inline-block;*/
+		float: left;
+		display:-moz-flex; 
+		display:-webkit-flex; 
+		display:-ms-flexbox; 
+		display:flex;
+		float: left;
+    	flex-direction: column;
+    	justify-content:space-between;
+		span{
+			font-size: 24/@base;
+			color: #FFFFFF;
+		}
+		em{
+			font-size: 45/@base;
+			color: #D4BD8A;
+			font-style:normal;
+		}
+	}
+
 }
 .wrapbox.current{
 	border: 1px solid blue;
@@ -137,12 +170,11 @@ a {
 	text-align: center;
 	font-size: 30/@base;
 	display: inline-block;
-
-
-    
 }
 .box_2{
 	border: none;
+	position: relative;
+	left: 36/@base;
 	margin: 0 18/@base;
 }
 .box_2  span{
@@ -169,6 +201,7 @@ a {
 }
 .game{
 	background: url(../gamebg.png);
+	left: 36/@base;
 	width: 330/@base;
 	height: 90/@base;
 	line-height: 90/@base;
@@ -178,6 +211,14 @@ a {
     background-repeat: no-repeat;
     background-size: contain;
     color: #FFFFFF;
+    position: relative;
+    img{
+    	position: absolute;
+    	left: 209/@base;
+    	top:15/@base;
+    	width: 121/@base;
+    	height: 60/@base;
+    }
 }
 
 .on{
