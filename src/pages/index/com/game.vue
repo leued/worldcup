@@ -25,6 +25,11 @@
   			</div>
 		</div>
 		<div class="submit" v-bind:class="{'on':setLight(3)}"></div>
+		<div class="explain">
+			<span>规则说明</span>
+			<p>1、点击预测的结果，然后提交竞猜即可，提交后不可修改。</p>
+			<p>2、各比赛阶段获得积分：小组赛150分/场，淘汰赛300分/场，八强赛500分/场，四强赛750分/场。</p>
+		</div>
   	</div>
 </template>
 

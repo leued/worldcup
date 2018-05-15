@@ -161,6 +161,12 @@ a {
 			font-style:normal;
 		}
 	}
+	.on{
+		color: #003162;
+		/*background: #fff;*/
+		box-sizing: border-box;
+		border: 1px solid #fff;
+	}
 
 }
 .wrapbox.current{
@@ -223,15 +229,10 @@ a {
     }
 }
 
-.on{
-	color: #003162;
-	/*background: #fff;*/
-	box-sizing: border-box;
-	border: 1px solid #fff;
-}
+
 .submit{
 	text-align: center;
-    width: 222/@base;
+    width: 221/@base;
     height: 60/@base;
     position: absolute;
     left: 50%;
@@ -289,11 +290,37 @@ a {
 			flex: 1;
 			font-size:20/@base;
 			text-align: center;
+			color: #fff;
 			img{
 				width:102/@base;
 				height: 50/@base;
 			}
+			i{
+				display: inline-block;
+				background: url(../guess.png) top;
+				background-size: contain;
+				background-repeat: no-repeat;
+				width: 95/@base;
+				height: 50/@base;
+				position: absolute;
+				top: -55/@base
+			}
 			
 		}
 	}
+	.on,.chsoen{
+		position: relative;
+		top:5/@base;
+		img{
+			transform: scale(1.3,1.3);
+		}
+		
+	}
+}
+.explain{
+	color: #fff;
+	font-size: 24/@base;
+	position: absolute;
+	top:657/@base;
+	left: 384/@base;
 }
