@@ -118,8 +118,9 @@ a {
 	flex:1.0;*/
 }
 .time{
-	width: 400px;
-	margin: 0 auto;	
+	width: 100%;
+	height: 42/@base;
+	line-height: 42/@base;
 	font-size: 30/@base;
 }
 .player{
@@ -243,36 +244,77 @@ a {
     background-repeat: no-repeat;
     background-size: contain;
 }
+.submit.on{
+	background: url(../btnon.png) center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.gamesubmit{
+	left: 844/@base;
+	margin-left:0;
+}
 .time{
 	top: 45/@base;
     position: relative;
     text-align: center;
     .left{
-    	width:10px;
-    	height: 10px;
+    	width:22/@base;
+    	height: 26/@base;
     	display: inline-block;
+    	position: absolute;
+    	left: 868/@base;
+    	top:8/@base;
     	background: url(../arrow.png);
     	background-repeat: no-repeat;
     	background-size: contain;
     	transform:rotate(180deg);
     }
     .right{
-    	width:10px;
-    	height: 10px;
+    	width:22/@base;
+    	height: 26/@base;
+    	position: absolute;
+    	left: 1036/@base;
+    	top:8/@base;
     	display: inline-block;
     	background: url(../arrow.png);
     	background-repeat: no-repeat;
     	background-size: contain;
     }
 	span{
-		display: none
-	}
-	.on{
 		display: inline-block;
-		width: 100px;
-    	margin: 0 auto;
+		width: 150/@base;
+		height: 42/@base;
+		line-height: 42/@base;
+		position: absolute;
+		left: 889/@base;
     	border: none;
     	color: #fff;
+	}
+	.on{
+		width: 67/@base;
+		height: 42/@base;
+		top:0;
+		background: url(../arrowon.png);
+    	background-repeat: no-repeat;
+    	background-size: contain;
+	}
+	.left.on{
+		left: 823/@base;
+	}
+	.unable{
+		width:22/@base;
+    	height: 26/@base;
+    	top:8/@base;
+		background: url(../unable-arrow.png);
+		background-repeat: no-repeat;
+    	background-size: contain;
+	}
+	.left.unable{
+		left: 868/@base;
+		transform:rotate(0deg);
+	}
+	.right.unable{
+		transform:rotate(180deg);
 	}
 }
 .champion{

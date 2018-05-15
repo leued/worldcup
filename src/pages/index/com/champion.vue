@@ -24,12 +24,25 @@ export default {
   name: 'champion',
   props:["psection"],
   data () {
+  	var x=null,y=null;
+  	if(configData.champion.user){
+  		for(let i=0;i<configData.teamgroup.length;i++){
+  			for(let j =0;j<configData.teamgroup[i].length;j++){
+  				if(configData.teamgroup[i][j] == configData.champion.user){
+  					x=j;
+  					y=i+1;
+  					break
+  				}
+  			}
+  		}
+  	}
+  	console.log(x,y)
     return {
        configData:configData,
        imgroute:imgroute,
        chosen:{
-       	x:null,
-       	y:null
+       	x:x,
+       	y:y
        },
        section:0,//猜冠军的模块标志，模块个数根据teamgroup来判定
        sectionX:0 //每个section x方向的位置标志
@@ -40,13 +53,13 @@ export default {
 			if(y!=null){
 				return this.section == y && this.sectionX==x && this.psection==1
 			}else{
-				return this.section ==y && this.psection==1
+				return this.section ==x && this.psection==1
 			}
 			
 		},
 		setChosen(x,y){
 			// console.log(this.chosen.x,this.chosen.y,x,y)
-			return this.chosen.y == y && this.chosen.x==x && this.psection==1
+			return this.chosen.y == y && this.chosen.x==x
 		},
 		handleUp(){
 			const me = this;
@@ -76,7 +89,7 @@ export default {
 			    },
 			    data:{
 			    	uid:2,
-			  		team:me.configData.teamgroup[me.chosen.y][me.chosen.x],
+			  		team:me.configData.teamgroup[me.chosen.y-1][me.chosen.x],
 			    }
 			}).then(function(r){
 				console.log(r.data)

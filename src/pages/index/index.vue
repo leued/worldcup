@@ -8,7 +8,7 @@
 				<span v-bind:class="{'tabon':setLight(2)}">积分榜</span>
 			</div>
 			<div>
-				<game v-show="tabIndex==0" :psection="section"></game>
+				<game v-show="tabIndex==0" :psection="section" :dateindex="dateindex"></game>
 				<champion v-show="tabIndex==1" :psection="section"></champion>
 				<score v-show="tabIndex==2" :psection="section"></score>
 			</div>
@@ -40,10 +40,18 @@ import score from './com/score';
 export default {
   name: 'index',
   data () {
+  	var dateindex = 0;
+  	for(let i=0;i<configData.date.length;i++){
+  		if(configData.date[i] = configData.currentdate){
+  			dateindex = i;
+  			break;
+  		}
+  	}
     return {
 		configData:configData,
 		section:0,//页面的section划分，主页共两个
 		tabIndex:0,
+		dateindex:dateindex,
 		uid:window.UID
     }
   },
@@ -135,8 +143,13 @@ export default {
   mounted(){
   	const me = this;
 	this.move();
-	this.$bus.$on("dateChange",function(index){
-		me.configData.currentdate = me.configData.date[index]
+	this.$bus.$on("dateChange",function(direction){
+		if(direction =="left" && me.dateindex!=0){
+			me.dateindex--;
+		}else if(direction == "right" && me.dateindex != me.configData.date.length-1){
+			me.dateindex++;
+		}
+		me.configData.currentdate = me.configData.date[me.dateindex];
 	})
   },
   beforeRouteEnter(to,from,next){
