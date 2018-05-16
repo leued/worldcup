@@ -74,10 +74,16 @@ export default {
 		},
 		handleUp(){
 			const me = this;
+			if(this.showDialog){
+				return
+			}
 			me.section !=0 && me.section --
 		},
 		handleDown(){
 			const me = this;
+			if(this.showDialog){
+				return
+			}
 			me.section < me.configData.teamgroup.length+1 && me.section ++
 		},
 		handleLeft(){
@@ -119,7 +125,6 @@ export default {
 			  		team:me.configData.teamgroup[me.chosen.y-1][me.chosen.x],
 			    }
 			}).then(function(r){
-				console.log(r.data)
 				me.showDialog = false;
 			})
 		}
