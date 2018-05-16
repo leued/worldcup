@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div class="ad"></div>
 		<div class="title">竞猜世界杯</div>
 	  	<div class="main">
 			<div class="tab">

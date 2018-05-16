@@ -15,6 +15,16 @@
 			<p>1、点击支持的球队，然后提交竞猜即可。</p>
 			<p>2、决赛日前可多次提交，以最后一次为准。提交越早，猜中后获得积分越高。</p>
 		</div>
+		<div v-if="showDialog" class="dialog">
+			<div class="dialogbox">
+				<h2>支持球队</h2>
+				<p>您确认支持{{configData.teamlist[configData.teamgroup[chosen.y-1][chosen.x]]}}对吗？</p>
+				<div>
+					<span v-bind:class="{'confirm':dialogbtn==0}">确认</span>
+					<span v-bind:class="{'confirm':dialogbtn==1}">取消</span>
+				</div>	
+			</div>
+		</div>
   	</div>
 </template>
 
@@ -36,10 +46,11 @@ export default {
   			}
   		}
   	}
-  	console.log(x,y)
     return {
        configData:configData,
        imgroute:imgroute,
+       showDialog:false,
+       dialogbtn:0,
        chosen:{
        	x:x,
        	y:y
@@ -70,16 +81,32 @@ export default {
 			me.section < me.configData.teamgroup.length+1 && me.section ++
 		},
 		handleLeft(){
+			if(this.showDialog){
+				this.dialogbtn = 0;
+				return
+			}
 			if(this.sectionX!=0){
 				this.sectionX--
 			}
 		},
 		handleRight(){
+			if(this.showDialog){
+				this.dialogbtn = 1;
+				return
+			}
 			if(this.sectionX!=this.configData.teamgroup[0].length-1){
 				this.sectionX++
 			}
 		},
+		beforeconfirm(){
+			this.dialogbtn = 0;
+			this.showDialog = true;
+		},
 		save(){
+			if(this.dialogbtn ==1){
+				this.showDialog = false;
+				return
+			}
 			const me = this;
 			Vue.axios({
 				url:'http://worldcup.beta.scloud.letv.cn/h5/home/AddUserGuessChampion',
@@ -93,6 +120,7 @@ export default {
 			    }
 			}).then(function(r){
 				console.log(r.data)
+				me.showDialog = false;
 			})
 		}
   },
@@ -117,7 +145,11 @@ export default {
   	this.$bus.$on("comfirm1",function(){
   		switch(me.section){
   			case me.configData.teamgroup.length+1:
-  			me.save();
+  			if(me.showDialog){
+  				me.save()
+  			}else{
+  				me.beforeconfirm();
+  			}
   			break;
   			default:
   			me.chosen.x = me.sectionX;

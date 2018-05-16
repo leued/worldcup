@@ -1,5 +1,9 @@
 <template>
   	<div>
+  	    <div class="line">
+  	    	<hr>
+  	    	<em></em><em></em><em></em><em></em>
+  	    </div>
 		<div class="time">
 		    <i class="left"  v-bind:class="{'on':setLight(1,0),'unable':setUnable(0)}"></i>
 			<span v-if="setCurrent(item)" v-for="item,index in configData.date">{{parsedate(item)}}</span>

@@ -1,5 +1,36 @@
 <template>
   	<div>
+  	    <div class="score">
+  	      <div class="myscore">
+  	          <img src="" alt="">	
+  	          <ul>
+  	          	<li>
+  	          		<span>我的积分</span>
+  	          		<strong>5000分</strong>
+  	          	</li>
+  	          	<li>
+  	          		<span>猜中场次</span>
+  	          		<strong>5000分</strong>
+  	          	</li>
+  	          	<li>
+  	          		<span>猜单场积分</span>
+  	          		<strong>5000分</strong>
+  	          	</li>
+  	          	<li>
+  	          		<span>猜冠军积分</span>
+  	          		<strong>5000分</strong>
+  	          	</li>
+  	          	<li>
+  	          		<span>最近场次积分</span>
+  	          		<strong>5000分</strong>
+  	          	</li>
+  	          	<li>
+  	          		<span>我的排名</span>
+  	          		<strong>5000分</strong>
+  	          	</li>
+  	          </ul>
+  	      </div>
+  	    </div>
   		<div class="explain">
 			<span>规则说明</span>
 			<p>1、单场比赛在次日零点系统结算后可获得积分；猜冠军支持的球队在决赛后可获得积分。</p>

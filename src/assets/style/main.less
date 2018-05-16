@@ -57,6 +57,15 @@ a {
 	position: absolute;
 	top: 30/@base;
 }
+.ad{
+	width: 270/@base;
+	height: 182/@base;
+	position: absolute;
+	top: 0;
+	left: 90/@base;
+	background: url(../ad.png)  no-repeat center;
+	background-size: contain;
+}
 .main{
 
 	background: url(../bg.png) center center;
@@ -102,7 +111,7 @@ a {
 		    z-index: 10;
 		/*    height: 140/@base;
 			width: 187/@base;*/
-			line-height: 245/@base;
+			line-height: 253/@base;
 		    color: #F72627 ;
 		    font-size: 36/@base;
 		}
@@ -360,9 +369,125 @@ a {
 	}
 }
 .explain{
-	color: #fff;
+	color: #b1b1b1;
 	font-size: 24/@base;
 	position: absolute;
 	top:657/@base;
 	left: 384/@base;
+}
+.line{
+	hr{
+		transform: rotate(90deg) scale(1, 0.5);
+		position: absolute;
+		width: 428/@base;
+		left:146/@base;
+		top:317/@base;
+	}
+	em{
+		position: absolute;
+		width: 9/@base;
+		height: 9/@base;
+		display: block;
+		background: #ffffff;
+		border-radius: 50%;
+		left: 357/@base;
+		top: 103/@base;
+	}
+	em:nth-child(2){
+		top: 217/@base;
+	}
+	em:nth-child(3){
+		top: 334/@base;
+	}
+	em:nth-child(4){
+		top: 451/@base;
+	}
+}
+.score{
+	/*position: relative;*/
+	
+	.myscore{
+		position: absolute;
+		width: 1060/@base;
+		height: 84/@base;
+		left: 416/@base;
+		img{
+			width: 60/@base;
+			height: 60/@base;
+			border-radius: 50%;
+			margin:15/@base 30/@base;
+		}
+		ul{
+			color: #ffffff;
+			font-size: 21/@base;
+			display: flex;
+			li{
+				box-sizing: border-box;
+				margin: 12/@base 0 15/@base 0;
+				padding-left: 15/@base;
+				flex: 1;
+				border-left: 1px solid rgba(255,255,255,0.2);
+			}
+		}
+	}
+}
+.dialog{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top:0;
+	left: 0;
+	z-index: 10;
+	background: rgba(0,0,0,0.8);
+	.dialogbox{
+		width: 800/@base;
+		height: 450/@base;
+		position: absolute;
+		top:313/@base;
+		left: 50%;
+		margin-left: -400/@base;
+		background: #464B50;
+		border-radius: 9px;
+		color: #ffffff;
+		h2{
+			margin-top:48/@base;
+			margin-bottom:36/@base;
+			padding-left: 60/@base;
+			font-size: 54/@base;
+		}
+		p{
+			padding-left: 60/@base;
+			font-size: 30/@base;
+		}
+		>div{
+			background: rgba(0,0,0,0.20);
+			height: 150/@base;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			padding: 30/@base 81/@base;
+			box-sizing: border-box;
+			span{
+				display: block;
+				/*flex: 1;*/
+				float: left;
+				width: 300/@base;
+				height: 84/@base;
+				border-radius: 100/@base;
+				background: rgba(255,255,255,0.35);
+				color: rgba(0,0,0,0.5);
+				line-height: 84/@base;
+				font-size: 39/@base;
+				text-align: center;
+			}
+			span:nth-child(2){
+				float: right;
+			}
+			.confirm{
+				background: #ffffff;
+				color: rgba(0,0,0,0.8);
+			}
+		}
+	}
 }
