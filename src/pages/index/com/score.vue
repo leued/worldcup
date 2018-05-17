@@ -4,7 +4,9 @@
   	      <div class="scorelist">
   	      	<ul>
   	      		<li v-for="n in 5">
-  	      			<div></div>
+  	      			<div>
+  	      				
+  	      			</div>
   	      		</li>
   	      	</ul>
   	      	<ul>
@@ -18,19 +20,19 @@
   	          <ul>
   	          	<li>
   	          		<span>我的积分</span>
-  	          		<strong>5000分</strong>
+  	          		<strong>{{score.user.total_score}}分</strong>
   	          	</li>
   	          	<li>
   	          		<span>猜中场次</span>
-  	          		<strong>5000分</strong>
+  	          		<strong>{{score.user.total_victory}}场</strong>
   	          	</li>
   	          	<li>
   	          		<span>猜单场积分</span>
-  	          		<strong>5000分</strong>
+  	          		<strong>{{score.user.total_score}}分</strong>
   	          	</li>
   	          	<li>
   	          		<span>猜冠军积分</span>
-  	          		<strong>5000分</strong>
+  	          		<strong>{{score.user.champion_score}}分</strong>
   	          	</li>
   	          	<li>
   	          		<span>最近场次积分</span>
@@ -38,7 +40,7 @@
   	          	</li>
   	          	<li>
   	          		<span>我的排名</span>
-  	          		<strong>5000分</strong>
+  	          		<strong>{{score.user.number}}名</strong>
   	          	</li>
   	          </ul>
   	      </div>
