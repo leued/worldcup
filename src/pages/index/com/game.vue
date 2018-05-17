@@ -187,6 +187,8 @@ export default {
 				case 2:
 				if(this.game.x!=2){
 					this.game.x++
+				}else{
+					this.$bus.$emit('tabToggle',1)
 				}
 				break;
 				case 3:

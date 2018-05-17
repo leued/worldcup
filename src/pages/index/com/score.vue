@@ -60,6 +60,15 @@ export default {
   	filterHead(img){
   		return img.split(",")[0]
   	}
+  },
+  mounted(){
+  	this.$bus.$on('move2',function(direction){
+  		switch(direction){
+  			case "left":
+  			this.$bus.$emit('tabToggle',1)
+  			break;
+  		}
+  	})
   }
 }
 </script>

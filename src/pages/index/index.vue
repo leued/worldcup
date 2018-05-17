@@ -164,6 +164,9 @@ export default {
 		}
 		me.configData.currentdate = me.configData.date[me.dateindex];
 	})
+	this.$bus.$on('tabToggle',function(index){
+		me.tabIndex = index;
+	})
   },
   beforeRouteEnter(to,from,next){
   	Vue.axios.get('http://worldcup.beta.scloud.letv.cn/h5/home/GetJsonStrByUid',{

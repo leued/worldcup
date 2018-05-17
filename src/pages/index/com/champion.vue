@@ -91,8 +91,17 @@ export default {
 				this.dialogbtn = 0;
 				return
 			}
-			if(this.sectionX!=0){
-				this.sectionX--
+			switch(this.section){
+				case 0:
+				this.$bus.$emit('tabToggle',0)
+				break;
+				default:
+				if(this.sectionX!=0){
+					this.sectionX--
+				}else{
+					this.$bus.$emit('tabToggle',0)
+				}
+				break;
 			}
 		},
 		handleRight(){
@@ -100,9 +109,19 @@ export default {
 				this.dialogbtn = 1;
 				return
 			}
-			if(this.sectionX!=this.configData.teamgroup[0].length-1){
-				this.sectionX++
+			switch(this.section){
+				case 0:
+				this.$bus.$emit('tabToggle',2);
+				break;
+				default:
+				if(this.sectionX!=this.configData.teamgroup[0].length-1){
+					this.sectionX++
+				}else{
+					this.$bus.$emit('tabToggle',2)
+				}
+				break;
 			}
+			
 		},
 		beforeconfirm(){
 			this.dialogbtn = 0;
