@@ -55,7 +55,7 @@ export default {
   data () {
   	var dateindex = 0;
   	for(let i=0;i<configData.date.length;i++){
-  		if(configData.date[i] = configData.currentdate){
+  		if(configData.date[i] == configData.currentdate){
   			dateindex = i;
   			break;
   		}

@@ -1,8 +1,13 @@
 <template>
   	<div>
   	    <div class="score">
-  	      <div class="="scorelist>
-  	      	<ul></ul>
+  	      <div class="scorelist">
+  	      	<ul>
+  	      		<li v-for="n in 5"></li>
+  	      	</ul>
+  	      	<ul>
+  	      		<li v-for="n in 5"></li>
+  	      	</ul>
   	      </div>
   	      <div class="myscore">
   	          <img :src="filterHead(score.user.picture)" alt="">	

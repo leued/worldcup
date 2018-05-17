@@ -34,6 +34,16 @@
 			<p>1、点击预测的结果，然后提交竞猜即可，提交后不可修改。</p>
 			<p>2、各比赛阶段获得积分：小组赛150分/场，淘汰赛300分/场，八强赛500分/场，四强赛750分/场。</p>
 		</div>
+		<div v-if="showDialog" class="dialog">
+			<div class="dialogbox">
+				<h2>提示</h2>
+				<p>提交竞猜结果后不可修改，您确认提交{{parsedate(configData.currentdate)}}的竞猜结果吗？</p>
+				<div>
+					<span v-bind:class="{'confirm':dialogbtn==0}">确认</span>
+					<span v-bind:class="{'confirm':dialogbtn==1}">取消</span>
+				</div>	
+			</div>
+		</div>
   	</div>
 </template>
 
@@ -52,7 +62,9 @@ export default {
 		},//比赛列表中x,y方向的位置
 		section1x:1,//时间模块，也即是第一个section在x轴上的位置标志
 		section:0, //猜单场分为三个模块，默认进入是第一个模块
-		gameindex:null
+		gameindex:null,
+		showDialog:false,
+		dialogbtn:0
     }
   },
   computed:{
@@ -119,6 +131,9 @@ export default {
 		  		}
 		  		break;
 		  		case 3:
+		  		if(this.showDialog){
+					return
+				}
 		  		me.section --
 		  		break;
 		  	}
@@ -154,6 +169,11 @@ export default {
 					this.game.x--
 				}
 				break;
+				case 3:
+				if(this.showDialog){
+					this.dialogbtn = 0;
+				}
+				break;
 			}
 		},
 		handleRight(){
@@ -169,6 +189,11 @@ export default {
 					this.game.x++
 				}
 				break;
+				case 3:
+				if(this.showDialog){
+					this.dialogbtn = 1;
+				}
+				break;
 			}
 		},
 		maps(i){
@@ -179,7 +204,15 @@ export default {
 			}
 			return map[i]
 		},
+		beforeconfirm(){
+			this.dialogbtn = 0;
+			this.showDialog = true;
+		},
 		save(){
+			if(this.dialogbtn ==1){
+				this.showDialog = false;
+				return
+			}
 			const me = this;
 			var value =[];
 			for(let i=0;i<me.gamelist.length;i++){
@@ -201,6 +234,7 @@ export default {
 			    }
 			}).then(function(r){
 				console.log(r.data)
+				me.showDialog = false;
 			})
 			// Vue.axios.post('http://worldcup.beta.scloud.letv.cn/h5/home/add',{
 		 //  		uid:2,
@@ -243,7 +277,11 @@ export default {
   			me.configData.gamelist[me.gameindex].data[me.game.y].chosen = me.maps(me.game.x);
   			break;
   			case 3:
-  			me.save();
+  			if(me.showDialog){
+  				me.save()
+  			}else{
+  				me.beforeconfirm();
+  			}
   			break;
   		}
   	});
