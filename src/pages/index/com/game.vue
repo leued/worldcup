@@ -195,7 +195,7 @@ export default {
 			        'Content-type': 'application/x-www-form-urlencoded'
 			    },
 			    data:{
-			    	uid:2,
+			    	uid:UID,
 			  		date:me.configData.currentdate,
 			  		value:JSON.stringify(value)
 			    }

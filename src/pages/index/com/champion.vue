@@ -121,7 +121,7 @@ export default {
 			        'Content-type': 'application/x-www-form-urlencoded'
 			    },
 			    data:{
-			    	uid:2,
+			    	uid:UID,
 			  		team:me.configData.teamgroup[me.chosen.y-1][me.chosen.x],
 			    }
 			}).then(function(r){

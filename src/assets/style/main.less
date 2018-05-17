@@ -408,10 +408,13 @@ a {
 	
 	.myscore{
 		position: absolute;
-		width: 1060/@base;
+		width: 1080/@base;
 		height: 84/@base;
-		left: 416/@base;
+		left: 390/@base;
+		bottom: 148/@base;
+		box-sizing: border-box;
 		img{
+			float: left;
 			width: 60/@base;
 			height: 60/@base;
 			border-radius: 50%;
@@ -421,12 +424,17 @@ a {
 			color: #ffffff;
 			font-size: 21/@base;
 			display: flex;
+			padding-top: 15/@base;
 			li{
 				box-sizing: border-box;
-				margin: 12/@base 0 15/@base 0;
-				padding-left: 15/@base;
+				/*margin: 12/@base 0 15/@base 0;
+				padding-left: 15/@base;*/
 				flex: 1;
 				border-left: 1px solid rgba(255,255,255,0.2);
+				display: flex;
+				flex-direction: column;
+    			justify-content:space-between;
+    			text-align: center;
 			}
 		}
 	}

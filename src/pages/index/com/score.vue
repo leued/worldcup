@@ -1,8 +1,11 @@
 <template>
   	<div>
   	    <div class="score">
+  	      <div class="="scorelist>
+  	      	<ul></ul>
+  	      </div>
   	      <div class="myscore">
-  	          <img src="" alt="">	
+  	          <img :src="filterHead(score.user.picture)" alt="">	
   	          <ul>
   	          	<li>
   	          		<span>我的积分</span>
@@ -45,8 +48,13 @@ export default {
   name: 'score',
   data () {
     return {
-       
+       score:configData.score
       }
+  },
+  methods:{
+  	filterHead(img){
+  		return img.split(",")[0]
+  	}
   }
 }
 </script>
