@@ -416,6 +416,7 @@ a {
 			li{
 				width: 500/@base;
 				height: 90/@base;
+				
 			}
 		}
 	}
@@ -453,6 +454,28 @@ a {
 		}
 	}
 }
+
+.loop(@count) when (@count > 0) {
+    .loop(@count - 1);
+    @num:@count+5;
+    @img:"../rank@{count}.png";
+    @img2:"../rank@{num}.png";
+    .score .scorelist ul li:nth-child(@{count}) {
+      	background: url(@img) no-repeat center;
+		background-size: contain;
+		border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .score .scorelist ul:nth-child(2) li:nth-child(@{count}) {
+      	background: url(@img2) no-repeat center;
+		background-size: contain;
+		border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+}
+
+.loop(5);
+
+
+
 .dialog{
 	position: fixed;
 	width: 100%;

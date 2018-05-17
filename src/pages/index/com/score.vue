@@ -3,10 +3,14 @@
   	    <div class="score">
   	      <div class="scorelist">
   	      	<ul>
-  	      		<li v-for="n in 5"></li>
+  	      		<li v-for="n in 5">
+  	      			<div></div>
+  	      		</li>
   	      	</ul>
   	      	<ul>
-  	      		<li v-for="n in 5"></li>
+  	      		<li v-for="n in 5">
+  	      			<div></div>
+  	      		</li>
   	      	</ul>
   	      </div>
   	      <div class="myscore">
