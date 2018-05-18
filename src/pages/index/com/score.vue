@@ -28,7 +28,7 @@
   	          	</li>
   	          	<li>
   	          		<span>猜单场积分</span>
-  	          		<strong>{{score.user.total_score}}分</strong>
+  	          		<strong>{{score.user.victory_score}}分</strong>
   	          	</li>
   	          	<li>
   	          		<span>猜冠军积分</span>
