@@ -12,7 +12,7 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: $c[NODE_ENV].assetsPublicPath.replace(/\"/g,''),
+    assetsPublicPath: '/',
     proxyTable: {},
 
     // Various Dev Server settings
@@ -53,7 +53,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: $c[NODE_ENV].assetsPublicPath.replace(/\"/g,''),
 
     /**
      * Source Maps

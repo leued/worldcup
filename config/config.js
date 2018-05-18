@@ -6,7 +6,7 @@ module.exports = {
   },
   testing : {
   	a : 1,
-  	assetsPublicPath : '"http://127.0.0.1"'
+  	assetsPublicPath : '"http://127.0.0.1:8081"'
   },
   development : {
   	"apiRoot" :'"http://ued.beta.scloud.letv.cn:8181/"',
