@@ -5,13 +5,29 @@
   	      	<ul>
   	      		<li v-for="n in 5">
   	      			<div>
-  	      				
+  	      				<div>
+  	      					<img :src="filterHead(score.user.picture)" alt="">
+  	      					<div>
+  	      						<span>乐小天</span>
+  	      						<span>猜中<em>32</em>场</span>	
+  	      					</div>
+  	      				</div>
+  	      				<p>积分：<em>20000</em>分</p>
   	      			</div>
   	      		</li>
   	      	</ul>
   	      	<ul>
   	      		<li v-for="n in 5">
-  	      			<div></div>
+  	      			<div>
+  	      				<div>
+  	      					<img :src="filterHead(score.user.picture)" alt="">
+  	      					<div>
+  	      						<span>乐小天</span>
+  	      						<span>猜中<em>32</em>场</span>	
+  	      					</div>	
+  	      				</div>
+  	      				<p>积分：<em>20000</em>分</p>
+  	      			</div>
   	      		</li>
   	      	</ul>
   	      </div>
