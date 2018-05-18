@@ -11,5 +11,6 @@ export default new Router({
       component: () => import ('@/pages/index/index')
     }
     
-  ]
+  ],
+  mode:'history'
 })
