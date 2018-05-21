@@ -120,6 +120,14 @@ export default {
 		setResult(index,num){
 			return this.gamelist[index].result == num
 		},
+		checkStatus(){
+			for(let i=0;i<this.gamelist.length;i++){
+				if(this.gamelist[i].chosen!=null||this.gamelist[i].result!=null){
+					return false
+				}
+			}
+			return true
+		},
 		handleUp(){
 		  	const me = this;
 		  	switch(me.section){
@@ -148,7 +156,9 @@ export default {
 		  		me.section ++
 		  		break;
 		  		case 1:
-		  		me.section ++
+		  		if(me.checkStatus()){
+		  			me.section ++
+		  		}
 		  		break;
 		  		case 2:
 		  		if(me.game.y!=me.gamelist.length-1){
@@ -210,6 +220,14 @@ export default {
 			return map[i]
 		},
 		beforeconfirm(){
+			const me = this;
+			//校验是不是该页的比赛都选择了
+			for(let i=0;i<me.gamelist.length;i++){
+				if(me.gamelist[i].chosen==null){
+					alert("请选择全部竞猜结果后，再提交")
+					return
+				}
+			}
 			this.dialogbtn = 0;
 			this.showDialog = true;
 		},
@@ -241,13 +259,6 @@ export default {
 				console.log(r.data)
 				me.showDialog = false;
 			})
-			// Vue.axios.post('http://worldcup.beta.scloud.letv.cn/h5/home/add',{
-		 //  		uid:2,
-		 //  		date:me.configData.currentdate,
-		 //  		value:JSON.stringify(value)
-		 //  	}).then(function(response){
-		 //  		console.log(response.data)
-			// })
 		}
   },
   mounted(){
