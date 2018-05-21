@@ -55,7 +55,7 @@ export default {
   data () {
     return {
 		configData:configData,
-		imgroute:imgroute,
+		imgroute:$C.imgroute,
 		game:{
 			x:0,
 			y:0

@@ -6,60 +6,14 @@
     <title>worldcup</title>
   </head>
   <script>
-  	var imgroute = "http://static2.scloud.letv.cn/le_h5/nation/";
-  	var configData = {
-	    date:["20180601","20180602"], //所有的日期
-	    currentdate:"20180601",//进入页面当前时间
-	    gamelist:[ //请求+拼接数据
-	        {
-	            time:"20180601",
-	            data:[{
-	                left:"milu",
-	                right:"helan",
-	                id:"20180601-milu-helan",//单场比赛id
-	                starttime:"12:00",
-	                chosen:null, //默认是null
-	                result:null //默认是null
-	            },{
-	                left:"milu",
-	                right:"agenting",
-	                id:"20180601-milu-agenting",//单场比赛id
-	                starttime:"12:00",
-	                chosen:null,
-	                result:null
-	            }]
-	        },
-	        {
-	            time:"20180602",
-	            data:[{
-	                left:"deguo",
-	                right:"helan",
-	                id:"20180601-milu-helan",//单场比赛id
-	                starttime:"12:00",
-	                chosen:null, //默认是null
-	                result:null //默认是null
-	            },{
-	                left:"milu",
-	                right:"agenting",
-	                id:"20180601-milu-helan",//单场比赛id
-	                starttime:"12:00",
-	                chosen:null,
-	                result:null
-	            }]
-	        }
-	    ],
-	    teamgroup:[
-	        ["milu","helan","agenting","deguo"],
-	        ["milu","helan","agenting","deguo"]
-	    ],
-	    teamlist:{
-	        "milu":"秘鲁",
-	        "helan":"荷兰",
-	        "agenting":"阿根廷",
-	        "deguo":"德国"
-	    },
-	    scorelist:{}
-	 
+  	var configData;
+
+	var $C = {
+		imgroute: "http://static2.scloud.letv.cn/le_h5/nation/",
+		baseApi : "http://worldcup.beta.scloud.letv.cn/",
+		getApi : function(api){
+			return $C.baseApi + api
+		}
 	}
   </script>
   <body>

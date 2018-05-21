@@ -48,7 +48,7 @@ export default {
   	}
     return {
        configData:configData,
-       imgroute:imgroute,
+       imgroute:$C.imgroute,
        showDialog:false,
        dialogbtn:0,
        chosen:{
@@ -134,7 +134,7 @@ export default {
 			}
 			const me = this;
 			Vue.axios({
-				url:'http://worldcup.beta.scloud.letv.cn/h5/home/AddUserGuessChampion',
+				url:$C.getApi('h5/home/AddUserGuessChampion'),
 				method:"post",
 			    headers:{
 			        'Content-type': 'application/x-www-form-urlencoded'
