@@ -27,7 +27,37 @@ table {
 a {
     text-decoration: none;
 }
+.focus{
+	animation: suofang 1.5s infinite;
+    -webkit-animation: suofang 1.5s infinite;
+}
 
+@keyframes suofang {
+	0% {
+		transform:scale(0.95, 0.95);
+	}
+	50%{
+		transform:scale(1.05, 1.05);
+	}
+	100% {
+		transform:scale(0.95, 0.95);
+	}
+}
+.focusleft{
+	animation: suofangl 1.5s infinite;
+    -webkit-animation: suofangl 1.5s infinite;
+}
+@keyframes suofangl {
+	0% {
+		transform:rotate(180deg) scale(0.95, 0.95);
+	}
+	50%{
+		transform:rotate(180deg) scale(1.05, 1.05);
+	}
+	100% {
+		transform:rotate(180deg) scale(0.95, 0.95);
+	}
+}
 .g-flexbox{
 	/*display:-moz-flex; 
 	display:-webkit-flex; 
@@ -210,6 +240,12 @@ a {
 	color: #C2AD84;
 	border-radius: 5px;
 	border: 1px solid #C2AD84;
+}
+.box_2  span.result{
+	color: #ffffff;
+	background: #cd1732;
+	border-radius: 5px;
+	border: 1px solid #cd1732;
 }
 .box_2 .on{
 	color: #003162;

@@ -5,9 +5,9 @@
   	    	<em></em><em></em><em></em><em></em>
   	    </div>
 		<div class="time">
-		    <i class="left"  v-bind:class="{'on':setLight(1,0),'unable':setUnable(0)}"></i>
+		    <i class="left"  v-bind:class="{'on focusleft':setLight(1,0),'unable':setUnable(0)}"></i>
 			<span v-if="setCurrent(item)" v-for="item,index in configData.date">{{parsedate(item)}}</span>
-			<i class="right" v-bind:class="{'on':setLight(1,1),'unable':setUnable(1)}"></i>
+			<i class="right" v-bind:class="{'on focus':setLight(1,1),'unable':setUnable(1)}"></i>
 		</div>
 		<div class="player">
 			<div class="g-flexbox wrapbox" v-for="(i,index) in gamelist">
@@ -19,16 +19,16 @@
 				  <img :src="imgroute+i.left+'.png'" alt="">
 				</div>
 				<div class="box box_2">
-					<span v-bind:class="{'on':setLight(2,0,index),'chosen':setChosen(index,3)}">胜</span>
-					<span v-bind:class="{'on':setLight(2,1,index),'chosen':setChosen(index,1)}">平</span>	
-					<span v-bind:class="{'on':setLight(2,2,index),'chosen':setChosen(index,0)}">负</span>
+					<span v-bind:class="{'on focus':setLight(2,0,index),'chosen':setChosen(index,3),'result':setResult(index,3)}">胜</span>
+					<span v-bind:class="{'on focus':setLight(2,1,index),'chosen':setChosen(index,1),'result':setResult(index,1)}">平</span>	
+					<span v-bind:class="{'on focus':setLight(2,2,index),'chosen':setChosen(index,0),'result':setResult(index,0)}">负</span>
 				</div>
 				<div class="game box">{{configData.teamlist[i.right]}}
 					<img :src="imgroute+i.right+'.png'" alt="">
 				</div>
   			</div>
 		</div>
-		<div class="submit gamesubmit" v-bind:class="{'on':setLight(3)}"></div>
+		<div class="submit gamesubmit" v-bind:class="{'on focus':setLight(3)}"></div>
 		<div class="explain">
 			<span>规则说明</span>
 			<p>1、点击预测的结果，然后提交竞猜即可，提交后不可修改。</p>
@@ -116,6 +116,9 @@ export default {
 		},
 		setChosen(index,num){
 			return this.gamelist[index].chosen == num
+		},
+		setResult(index,num){
+			return this.gamelist[index].result == num
 		},
 		handleUp(){
 		  	const me = this;

@@ -51,10 +51,6 @@
   	          		<strong>{{score.user.champion_score}}分</strong>
   	          	</li>
   	          	<li>
-  	          		<span>最近场次积分</span>
-  	          		<strong>5000分</strong>
-  	          	</li>
-  	          	<li>
   	          		<span>我的排名</span>
   	          		<strong>{{score.user.number}}名</strong>
   	          	</li>

@@ -2,14 +2,14 @@
   	<div>
 	  	<div class="champion">
 	  		<div class="teambox" v-for="item,index in configData.teamgroup">
-	  			<div class="teamitem"  v-bind:class="{'on':setLight(index2,1+index),'chsoen':setChosen(index2,1+index)}" v-for="item2,index2 in item">
+	  			<div class="teamitem"  v-bind:class="{'on focus':setLight(index2,1+index),'chsoen':setChosen(index2,1+index)}" v-for="item2,index2 in item">
 	  			    <i v-if="setChosen(index2,1+index)"></i>
 		  			<img :src="imgroute+item2+'.png'" alt="">
 		  			<span>{{configData.teamlist[item2]}}</span>
 	  			</div>
 	  		</div>
 	  	</div>
-	  	<div class="submit" v-bind:class="{'on':setLight(configData.teamgroup.length+1)}"></div>
+	  	<div class="submit" v-bind:class="{'on focus':setLight(configData.teamgroup.length+1)}"></div>
 	  	<div class="explain">
 			<span>规则说明</span>
 			<p>1、点击支持的球队，然后提交竞猜即可。</p>
