@@ -245,7 +245,7 @@ export default {
 			    })
 			}
 			Vue.axios({
-				url:'http://worldcup.beta.scloud.letv.cn/h5/home/add',
+				url:$C.getApi('h5/home/add'),
 				method:"post",
 			    headers:{
 			        'Content-type': 'application/x-www-form-urlencoded'
@@ -256,8 +256,8 @@ export default {
 			  		value:JSON.stringify(value)
 			    }
 			}).then(function(r){
-				console.log(r.data)
 				me.showDialog = false;
+				me.$bus.$emit("dateChange","right")
 			})
 		}
   },
