@@ -172,7 +172,7 @@ export default {
 	})
   },
   beforeRouteEnter(to,from,next){
-  	Vue.axios.get('http://worldcup.beta.scloud.letv.cn/h5/home/GetJsonStrByUid',{
+  	Vue.axios.get($C.getApi('h5/home/GetJsonStrByUid'),{
   		params:{
   			uid:UID
   		}
