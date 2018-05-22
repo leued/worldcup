@@ -44,6 +44,14 @@
 				</div>	
 			</div>
 		</div>
+
+		<div v-if="showTip" class="dialog">
+			<div class="dialogbox">
+				<h2>提示</h2>
+				<p>{{tips}}</p>
+			</div>
+		</div>
+
   	</div>
 </template>
 
@@ -64,6 +72,8 @@ export default {
 		section:0, //猜单场分为三个模块，默认进入是第一个模块
 		gameindex:null,
 		showDialog:false,
+		showTip:false,
+		tips:null,
 		dialogbtn:0
     }
   },
@@ -257,7 +267,12 @@ export default {
 			    }
 			}).then(function(r){
 				me.showDialog = false;
-				me.$bus.$emit("dateChange","right")
+				me.tips="您已提交"+me.parsedate(me.configData.currentdate)+"竞猜结果，为您自动切换至下一日。";
+				me.showTip = true;
+				me.$bus.$emit("dateChange","right");
+				me.section=2;
+				me.game.x=0;
+				me.game.y=0;
 			})
 		}
   },
@@ -280,6 +295,10 @@ export default {
   		}
   	})
   	this.$bus.$on("comfirm0",function(){
+  		if(me.showTip){
+  			me.showTip = false;
+  			return
+  		}
   		switch(me.section){
   			case 1:
   			if(me.section1x==0){
