@@ -83,7 +83,15 @@ export default {
   		for(let i=0;i<this.configData.gamelist.length;i++){
   			if(this.configData.gamelist[i].time == this.configData.currentdate){
   				gamelist = this.configData.gamelist[i].data;
+  				console.log(gamelist)
   				this.gameindex = i;
+  				if(typeof(this.configData.gamelist[i].status)=="undefined"){
+					if(gamelist[0].chosen!=null||gamelist[0].result!=null){
+						this.configData.gamelist[i].status = false
+					}else{
+						this.configData.gamelist[i].status = true
+					}
+				}
   				break
   			}
   		}
@@ -131,12 +139,12 @@ export default {
 			return this.gamelist[index].result == num
 		},
 		checkStatus(){
-			for(let i=0;i<this.gamelist.length;i++){
-				if(this.gamelist[i].chosen!=null||this.gamelist[i].result!=null){
-					return false
-				}
-			}
-			return true
+			// for(let i=0;i<this.gamelist.length;i++){
+			// 	if(this.gamelist.status){
+			// 		return false
+			// 	}
+			// }
+			return this.configData.gamelist[this.gameindex].status
 		},
 		handleUp(){
 		  	const me = this;
@@ -267,6 +275,7 @@ export default {
 			    }
 			}).then(function(r){
 				me.showDialog = false;
+				me.configData.gamelist[me.gameindex].status = false;
 				me.tips="您已提交"+me.parsedate(me.configData.currentdate)+"竞猜结果，为您自动切换至下一日。";
 				me.showTip = true;
 				me.$bus.$emit("dateChange","right");
