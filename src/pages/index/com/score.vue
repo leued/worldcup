@@ -3,30 +3,30 @@
   	    <div class="score">
   	      <div class="scorelist">
   	      	<ul>
-  	      		<li v-for="n in 5">
+  	      		<li  v-if="score.list[n]" v-for="n in 5">
   	      			<div>
   	      				<div>
   	      					<img :src="filterHead(score.user.picture)" alt="">
   	      					<div>
   	      						<span>乐小天</span>
-  	      						<span>猜中<em>32</em>场</span>	
+  	      						<span>猜中<em>{{ score.list[n].total_victory}}</em>场</span>	
   	      					</div>
   	      				</div>
-  	      				<p>积分：<em>20000</em>分</p>
+  	      				<p>积分：<em>{{score.list[n].total_score}}</em>分</p>
   	      			</div>
   	      		</li>
   	      	</ul>
   	      	<ul>
-  	      		<li v-for="n in 5">
+  	      		<li v-if="score.list[n+5]" v-for="n in 5">
   	      			<div>
   	      				<div>
   	      					<img :src="filterHead(score.user.picture)" alt="">
   	      					<div>
   	      						<span>乐小天</span>
-  	      						<span>猜中<em>32</em>场</span>	
+  	      						<span>猜中<em>{{score.list[n+1].total_victory}}</em>场</span>	
   	      					</div>	
   	      				</div>
-  	      				<p>积分：<em>20000</em>分</p>
+  	      				<p>积分：<em>{{ score.list[n+5].total_score}}</em>分</p>
   	      			</div>
   	      		</li>
   	      	</ul>
