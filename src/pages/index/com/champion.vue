@@ -124,6 +124,10 @@ export default {
 			
 		},
 		beforeconfirm(){
+			if(!this.chosen.x||!this.chosen.y){
+				alert("请选择球队后，再提交")
+				return
+			}
 			this.dialogbtn = 0;
 			this.showDialog = true;
 		},
@@ -133,6 +137,7 @@ export default {
 				return
 			}
 			const me = this;
+			me.$bus.$emit('showloading',true);
 			Vue.axios({
 				url:$C.getApi('h5/home/AddUserGuessChampion'),
 				method:"post",
@@ -144,7 +149,12 @@ export default {
 			  		team:me.configData.teamgroup[me.chosen.y-1][me.chosen.x],
 			    }
 			}).then(function(r){
-				me.showDialog = false;
+				if(r.data.errno==10000){
+		  			me.showDialog = false;
+					me.$bus.$emit('showloading',false);
+		  		}else{
+		  			alert(r.data.errmsg)
+		  		}
 			})
 		}
   },

@@ -3,30 +3,30 @@
   	    <div class="score">
   	      <div class="scorelist">
   	      	<ul>
-  	      		<li  v-if="score.list[n]" v-for="n in 5">
+  	      		<li  v-if="score.list[n-1]" v-for="n in 5">
   	      			<div>
   	      				<div>
-  	      					<img :src="filterHead(score.user.picture)" alt="">
+  	      					<img :src="score.list[n-1].picture &&filterHead(score.list[n-1].picture)" alt="">
   	      					<div>
-  	      						<span>乐小天</span>
-  	      						<span>猜中<em>{{ score.list[n].total_victory}}</em>场</span>	
+  	      						<span>{{score.list[n-1].nickname && score.list[n-1].nickname}}</span>
+  	      						<span>猜中<em>{{ score.list[n-1].total_victory}}</em>场</span>	
   	      					</div>
   	      				</div>
-  	      				<p>积分：<em>{{score.list[n].total_score}}</em>分</p>
+  	      				<p>积分：<em>{{score.list[n-1].total_score}}</em>分</p>
   	      			</div>
   	      		</li>
   	      	</ul>
   	      	<ul>
-  	      		<li v-if="score.list[n+5]" v-for="n in 5">
+  	      		<li v-if="score.list[n+4]" v-for="n in 5">
   	      			<div>
   	      				<div>
-  	      					<img :src="filterHead(score.user.picture)" alt="">
+  	      					<img :src="score.list[n+4].picture&& filterHead(score.list[n+4].picture)" alt="">
   	      					<div>
-  	      						<span>乐小天</span>
-  	      						<span>猜中<em>{{score.list[n+1].total_victory}}</em>场</span>	
+  	      						<span>{{score.list[n+4].nickname && score.list[n+4].nickname}}</span>
+  	      						<span>猜中<em>{{score.list[n+4].total_victory}}</em>场</span>	
   	      					</div>	
   	      				</div>
-  	      				<p>积分：<em>{{ score.list[n+5].total_score}}</em>分</p>
+  	      				<p>积分：<em>{{ score.list[n+4].total_score}}</em>分</p>
   	      			</div>
   	      		</li>
   	      	</ul>

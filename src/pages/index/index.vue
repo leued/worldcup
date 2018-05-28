@@ -14,6 +14,7 @@
 				<score v-show="tabIndex==2" :psection="section"></score>
 			</div>
 	  	</div>
+	  	<div v-if="showloading" class="loading"><span></span></div>
   	</div>
 </template>
 
@@ -65,7 +66,8 @@ export default {
 		section:0,//页面的section划分，主页共两个
 		tabIndex:0,
 		dateindex:dateindex,
-		uid:window.UID
+		uid:window.UID,
+		showloading:false
     }
   },
   components:{game,champion,score},
@@ -170,6 +172,9 @@ export default {
 	this.$bus.$on('tabToggle',function(index){
 		me.tabIndex = index;
 	})
+	this.$bus.$on('showloading',function(o){
+		me.showloading = o;
+	})
   },
   beforeRouteEnter(to,from,next){
   	Vue.axios.get($C.getApi('h5/home/GetJsonStrByUid'),{
@@ -177,7 +182,12 @@ export default {
   			uid:UID
   		}
   	}).then(function(response){
-		configData = response.data.data;
+  		if(response.data.errno==10000){
+  			configData = response.data.data;
+  		}else{
+  			alert(response.data.errmsg)
+  		}
+		
 		next()
 	})
   }

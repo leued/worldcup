@@ -44,13 +44,13 @@
 				</div>	
 			</div>
 		</div>
-
-		<div v-if="showTip" class="dialog">
-			<div class="dialogbox">
-				<h2>提示</h2>
-				<p>{{tips}}</p>
+        <transition name="fade">
+			<div v-show="showTip" class="dialog">
+				<div class="tips">
+					{{tips}}
+				</div>
 			</div>
-		</div>
+		</transition>
 
   	</div>
 </template>
@@ -73,7 +73,7 @@ export default {
 		gameindex:null,
 		showDialog:false,
 		showTip:false,
-		tips:null,
+		tips:"您已成功提交，自动切换至下一日",
 		dialogbtn:0
     }
   },
@@ -83,7 +83,6 @@ export default {
   		for(let i=0;i<this.configData.gamelist.length;i++){
   			if(this.configData.gamelist[i].time == this.configData.currentdate){
   				gamelist = this.configData.gamelist[i].data;
-  				console.log(gamelist)
   				this.gameindex = i;
   				if(typeof(this.configData.gamelist[i].status)=="undefined"){
 					if(gamelist[0].chosen!=null||gamelist[0].result!=null){
@@ -190,7 +189,7 @@ export default {
 		handleLeft(){
 			switch(this.section){
 				case 1:
-				if(this.section1x==1){
+				if(this.section1x==1 && this.dateindex!=0){
 					this.section1x = 0;
 					// this.$bus.$emit("dateChange",this.section1x)
 				}
@@ -210,7 +209,7 @@ export default {
 		handleRight(){
 			switch(this.section){
 				case 1:
-				if(this.section1x==0){
+				if(this.section1x==0 && this.dateindex!=this.configData.date.length-1){
 					this.section1x = 1;
 					// this.$bus.$emit("dateChange",this.section1x)
 				}
@@ -262,6 +261,7 @@ export default {
 			        chosen:me.gamelist[i].chosen
 			    })
 			}
+			me.$bus.$emit('showloading',true);
 			Vue.axios({
 				url:$C.getApi('h5/home/add'),
 				method:"post",
@@ -274,14 +274,28 @@ export default {
 			  		value:JSON.stringify(value)
 			    }
 			}).then(function(r){
+				if(!r.data.errno==10000){
+					alert(r.data.errmsg)
+					me.$bus.$emit('showloading',false);
+					me.showTip = false;
+					return
+				}
 				me.showDialog = false;
 				me.configData.gamelist[me.gameindex].status = false;
-				me.tips="您已提交"+me.parsedate(me.configData.currentdate)+"竞猜结果，为您自动切换至下一日。";
+				me.$bus.$emit('showloading',false);
+				if(me.dateindex==me.configData.date.length-1){
+					me.tips="您已完成全部赛事竞猜！祝您赢得大奖！";
+				}else{
+					me.tips="您已提交"+me.parsedate(me.configData.currentdate)+"竞猜结果，为您自动切换至下一日。";
+				}
 				me.showTip = true;
-				me.$bus.$emit("dateChange","right");
-				me.section=2;
-				me.game.x=0;
-				me.game.y=0;
+				setTimeout(function(){
+					me.showTip = false;
+					me.$bus.$emit("dateChange","right");
+					me.section=2;
+					me.game.x=0;
+					me.game.y=0;
+				},2000)				
 			})
 		}
   },
@@ -312,7 +326,13 @@ export default {
   			case 1:
   			if(me.section1x==0){
   				this.$bus.$emit("dateChange","left")
+  				if(me.dateindex==1){
+  					me.section1x = 1;
+  				}
   			}else{
+  				if(me.dateindex==me.configData.date.length-2){
+  					me.section1x = 0;
+  				}
   				this.$bus.$emit("dateChange","right")
   			}
   			break;
