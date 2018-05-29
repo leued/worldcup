@@ -679,3 +679,85 @@ a {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
+.rule{
+	background: url(../rule.png) center center;
+	width:1462/@base;
+	margin:167/@base auto;
+	position: relative;
+	height: 766/@base;
+	background-size: contain;
+	background-repeat: no-repeat;
+	header{
+		background: url(../r-header.png) no-repeat center;
+		background-size: contain;
+		position: absolute;
+		width: 563/@base;
+		height: 147/@base;
+		left: 50%;
+		margin-left: -281/@base;
+		top: -90/@base;
+	}
+	section{
+		width: 1056/@base;
+		height: 100%;
+		margin:0 auto;
+		ul{
+			display: flex;
+			flex-direction: column;
+    		justify-content:space-between;
+    		font-size: 0;
+    		height: 100%;
+    		box-sizing: border-box;
+    		padding-top: 56/@base;
+    		padding-bottom: 139/@base;
+		}
+		li{
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+    		justify-content:space-between;
+			span{
+				font-size: 30/@base;
+				color: #ffffff;
+				position: relative;
+				flex: 1;
+			}
+			span:before{
+				content: "";
+				background: url(../ball.png) no-repeat center;
+				background-size:contain; 
+				width: 31/@base;
+				height: 35/@base;
+				position: absolute;
+				top: 0;
+				left: -46/@base;
+			}
+			>div{
+				flex: 1;
+				font-size: 24/@base;
+				color: #ffffff;
+				opacity: 0.6;
+			}
+		}
+	}
+	footer{
+		color: #FF9000;
+		opacity: 0.6;
+		width: 100%;
+		font-size: 24/@base;
+		position: absolute;
+		bottom: 63/@base;
+		text-align: center;
+	}
+	>div{
+		background: url(../r-btn.png) no-repeat center;
+		background-size: contain;
+		position: absolute;
+		width: 302/@base;
+		height: 81/@base;
+		left: 50%;
+		margin-left: -151/@base;
+		bottom: -35/@base;
+	}
+}

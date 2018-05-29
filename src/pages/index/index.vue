@@ -1,19 +1,22 @@
 <template>
     <div>
-        <div class="ad"></div>
-		<div class="title">竞猜世界杯</div>
-	  	<div class="main">
-			<div class="tab">
-				<span v-bind:class="{'tabon':setLight(0),'focus':setFocus(0)}">猜胜负</span>
-				<span v-bind:class="{'tabon':setLight(1),'focus':setFocus(1)}">猜冠军</span>
-				<span v-bind:class="{'tabon':setLight(2),'focus':setFocus(2)}">积分榜</span>
-			</div>
-			<div>
-				<game v-show="tabIndex==0" :psection="section" :dateindex="dateindex"></game>
-				<champion v-show="tabIndex==1" :psection="section"></champion>
-				<score v-show="tabIndex==2" :psection="section"></score>
-			</div>
-	  	</div>
+    	<rule v-if="showrule"></rule>
+        <div v-if="!showrule">
+	        <div class="ad"></div>
+			<div class="title">竞猜世界杯</div>
+		  	<div class="main">
+				<div class="tab">
+					<span v-bind:class="{'tabon':setLight(0),'focus':setFocus(0)}">猜胜负</span>
+					<span v-bind:class="{'tabon':setLight(1),'focus':setFocus(1)}">猜冠军</span>
+					<span v-bind:class="{'tabon':setLight(2),'focus':setFocus(2)}">积分榜</span>
+				</div>
+				<div>
+					<game v-show="tabIndex==0" :psection="section" :dateindex="dateindex"></game>
+					<champion v-show="tabIndex==1" :psection="section"></champion>
+					<score v-show="tabIndex==2" :psection="section"></score>
+				</div>
+		  	</div>
+		  </div>
 	  	<div v-if="showloading" class="loading"><span></span></div>
   	</div>
 </template>
@@ -50,6 +53,7 @@ import Vue from 'vue';
 import game from './com/game';
 import champion from './com/champion';
 import score from './com/score';
+import rule from './com/rule';
 
 export default {
   name: 'index',
@@ -67,10 +71,11 @@ export default {
 		tabIndex:0,
 		dateindex:dateindex,
 		uid:window.UID,
-		showloading:false
+		showloading:false,
+		showrule:true
     }
   },
-  components:{game,champion,score},
+  components:{game,champion,score,rule},
   computed:{},
   methods: {
 		move(){
@@ -80,6 +85,10 @@ export default {
 	  			e=window.event||e;
 			  	switch(e.keyCode){
 				  	case 13:
+				  	   if(me.showrule){
+				  	   	me.showrule=false;
+				  	   	return
+				  	   }
 				  		me.comfirm();
 				  		break;
 				    case 37: //左键

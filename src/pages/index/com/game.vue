@@ -28,7 +28,7 @@
 				</div>
   			</div>
 		</div>
-		<div class="submit gamesubmit" v-bind:class="{'on focus':setLight(3)}"></div>
+		<div class="submit gamesubmit" v-bind:class="{'focus':setLight(3),'on':setOn()&&checkStatus()}"></div>
 		<div class="explain">
 			<span>规则说明</span>
 			<p>1、点击预测的结果，然后提交竞猜即可，提交后不可修改。</p>
@@ -118,6 +118,16 @@ export default {
 			if(time == this.configData.currentdate){
 				return true
 			}
+		},
+		setOn(){
+			const me = this;
+			//校验是不是该页的比赛都选择了
+			for(let i=0;i<me.gamelist.length;i++){
+				if(me.gamelist[i].chosen==null){
+					return false
+				}
+			}
+			return true
 		},
 		setUnable(i){
 			if(i==0 && this.dateindex == 0){
