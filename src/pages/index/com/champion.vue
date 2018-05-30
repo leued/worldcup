@@ -9,7 +9,7 @@
 	  			</div>
 	  		</div>
 	  	</div>
-	  	<div class="submit" v-bind:class="{'on focus':setLight(configData.teamgroup.length+1)}"></div>
+	  	<div class="submit" v-bind:class="{'on focus':setLight(configData.teamgroup.length+1)}">提交竞猜</div>
 	  	<div class="explain">
 			<span>规则说明</span>
 			<p>1、点击支持的球队，然后提交竞猜即可。</p>

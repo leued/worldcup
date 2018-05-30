@@ -28,7 +28,7 @@
 				</div>
   			</div>
 		</div>
-		<div class="submit gamesubmit" v-bind:class="{'focus':setLight(3),'on':setOn()&&checkStatus()}"></div>
+		<div class="submit gamesubmit" v-bind:class="{'focus':setLight(3),'on':setOn()&&checkStatus()}">提交竞猜</div>
 		<div class="explain">
 			<span>规则说明</span>
 			<p>1、点击预测的结果，然后提交竞猜即可，提交后不可修改。</p>

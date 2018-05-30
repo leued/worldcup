@@ -2,7 +2,7 @@
     <div>
     	<rule v-if="showrule"></rule>
         <div v-if="!showrule">
-	        <div class="ad"></div>
+	        <div class="ad">用户uid:{{uid}}</div>
 			<div class="title">竞猜世界杯</div>
 		  	<div class="main">
 				<div class="tab">
@@ -81,6 +81,34 @@ export default {
 		move(){
 			let me  = this;
 			// this.forEachPlayer();
+			window.OnReceiveKeyEvent = function(keyCode,action){
+				if(action==0){
+					switch(keyCode){
+						case 5:
+						if(me.showrule){
+					  	   	me.showrule=false;
+					  	   	return
+					  	   }
+					  	me.comfirm();
+				  		break;
+				  		case 4: //左键
+					      	me.setLeft();
+					     	break;
+					    case 1: //向上键
+					    	me.setUp()
+					      break;
+					    case 2: //右键
+				      		me.setRight();
+					      	break;
+					    case 3: //向下键
+					    	me.setDown()
+					      	break;
+					    default:
+					      	break;
+					}
+				}
+			}
+
 			document.onkeydown=function(e){
 	  			e=window.event||e;
 			  	switch(e.keyCode){
