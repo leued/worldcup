@@ -22,33 +22,7 @@
 </template>
 
 <script>
-/*登录模块*/
 
- var getUrlParam = function(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-    var r = window.location.search.substr(1).match(reg); //匹配目标参数
-    if (r != null) return unescape(r[2]);
-    return null; //返回参数值
- };
-  if (getUrlParam("uid")) {
-    window.UID = getUrlParam("uid");
- }
-
-
-(function(){
-	function goLogin(){
-		var api = {"action":"com.stv.t2.account","extra":{"type":1,"value":"{\"go_record\":\"true\",\"go_account_center\":\"false\",\"status_code\":\"0\"}","from":"com.stv.ucenter"}};
-    	window.LetvFish && window.LetvFish.startIntentWithParms(JSON.stringify(api));
-	}
-	if(window.LetvFish && window.LetvFish.getDeviceUid()){
-		window.UID = window.LetvFish && window.LetvFish.getDeviceUid();
-    }else{
-        goLogin();
-    }
-    window.OnStvBrowserResume = function(){
-    	window.UID = window.LetvFish && window.LetvFish.getDeviceUid() || '';
-    }
-})();
 import Vue from 'vue';
 import game from './com/game';
 import champion from './com/champion';
@@ -214,19 +188,53 @@ export default {
 	})
   },
   beforeRouteEnter(to,from,next){
-  	Vue.axios.get($C.getApi('h5/home/GetJsonStrByUid'),{
-  		params:{
-  			uid:UID
-  		}
-  	}).then(function(response){
-  		if(response.data.errno==10000){
-  			configData = response.data.data;
-  		}else{
-  			alert(response.data.errmsg)
-  		}
-		
-		next()
-	})
+		function getdata(){
+		  	Vue.axios.get($C.getApi('h5/home/GetJsonStrByUid'),{
+		  		params:{
+		  			uid:UID
+		  		}
+		  	}).then(function(response){
+		  		if(response.data.errno==10000){
+		  			configData = response.data.data;
+		  		}else{
+		  			alert(response.data.errmsg)
+		  		}
+				next()
+			})
+		}
+
+/*登录模块*/
+
+	 var getUrlParam = function(name) {
+	    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+	    var r = window.location.search.substr(1).match(reg); //匹配目标参数
+	    if (r != null) return unescape(r[2]);
+	    return null; //返回参数值
+	 };
+	  if (getUrlParam("uid")) {
+	    window.UID = getUrlParam("uid");
+	  	getdata();
+	 }
+
+
+	(function(){
+		function goLogin(){
+			var api = {"action":"com.stv.t2.account","extra":{"type":1,"value":"{\"go_record\":\"true\",\"go_account_center\":\"false\",\"status_code\":\"0\"}","from":"com.stv.ucenter"}};
+	    	window.LetvFish && window.LetvFish.startIntentWithParms(JSON.stringify(api));
+		}
+		if(window.LetvFish && window.LetvFish.getDeviceUid()){
+			window.UID = window.LetvFish && window.LetvFish.getDeviceUid();
+			getdata();
+	    }else{
+	        goLogin();
+	    }
+	    window.OnStvBrowserResume = function(){
+	    	window.UID = window.LetvFish && window.LetvFish.getDeviceUid() || '';
+	    	getdata();
+	    }
+	})();
+
+
   }
 }
 </script>
