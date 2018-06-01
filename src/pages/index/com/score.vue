@@ -31,7 +31,7 @@
   	      		</li>
   	      	</ul>
   	      </div>
-  	      <div class="myscore">
+  	      <div class="myscore" v-if="uid">
   	          <img :src="filterHead(score.user.picture)" alt="">	
   	          <ul>
   	          	<li>
@@ -57,6 +57,9 @@
   	          </ul>
   	      </div>
   	    </div>
+        <div class="notstart" v-if="score.list.length==0||score.list==''">
+             <p>尚未开始比赛...</p>
+        </div>
   		<div class="explain">
 			<span>规则说明</span>
 			<p>1、单场比赛在次日零点系统结算后可获得积分；猜冠军支持的球队在决赛后可获得积分。</p>
@@ -71,7 +74,8 @@ export default {
   name: 'score',
   data () {
     return {
-       score:configData.score
+       score:configData.score,
+       uid:UID
       }
   },
   methods:{

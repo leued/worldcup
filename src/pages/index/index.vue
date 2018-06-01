@@ -2,7 +2,7 @@
     <div>
     	<rule v-if="showrule"></rule>
         <div v-if="!showrule">
-	        <div class="ad">用户uid:{{uid}}</div>
+	        <div class="ad"></div>
 			<div class="title">竞猜世界杯</div>
 		  	<div class="main">
 				<div class="tab">

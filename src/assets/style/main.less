@@ -583,6 +583,24 @@ a {
 	}
 }
 
+.notstart{
+	background: url(../notstart.png) no-repeat center;
+	background-size: contain;
+	width: 214/@base;
+	height: 195/@base;
+	position: absolute;
+	left:50%;
+	margin-left: -107/@base;
+	top:160/@base;
+	p{
+		position: absolute;
+		font-size: 30/@base;
+		color: rgba(255,255,255,0.2);
+		bottom: -55/@base;
+		text-align: center;
+	}
+}
+
 .loop(@count) when (@count > 0) {
     .loop(@count - 1);
     @num:@count+5;
