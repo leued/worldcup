@@ -26,7 +26,7 @@
   	      						<span>猜中<em>{{score.list[n+4].total_victory}}</em>场</span>	
   	      					</div>	
   	      				</div>
-  	      				<p>积分：<em>{{ score.list[n+4].total_score}}</em>分</p>
+  	      				<p>积分：<em>{{ score.list[n+4].total_score||0}}</em>分</p>
   	      			</div>
   	      		</li>
   	      	</ul>
@@ -36,7 +36,7 @@
   	          <ul>
   	          	<li>
   	          		<span>我的积分</span>
-  	          		<strong>{{score.user.total_score}}分</strong>
+  	          		<strong>{{score.user.total_score||0}}分</strong>
   	          	</li>
   	          	<li>
   	          		<span>猜中场次</span>
@@ -44,11 +44,11 @@
   	          	</li>
   	          	<li>
   	          		<span>猜单场积分</span>
-  	          		<strong>{{score.user.victory_score}}分</strong>
+  	          		<strong>{{score.user.victory_score||0}}分</strong>
   	          	</li>
   	          	<li>
   	          		<span>猜冠军积分</span>
-  	          		<strong>{{score.user.champion_score}}分</strong>
+  	          		<strong>{{score.user.champion_score||0}}分</strong>
   	          	</li>
   	          	<li>
   	          		<span>我的排名</span>

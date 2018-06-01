@@ -19,6 +19,7 @@
 			<div class="dialogbox">
 				<h2>支持球队</h2>
 				<p>您确认支持{{configData.teamlist[configData.teamgroup[chosen.y-1][chosen.x]]}}对吗？</p>
+				<p>当前是{{getGameType(configData.gametype,'name')}}赛，猜中可获{{getGameType(configData.gametype,'value')}}积分</p>
 				<div>
 					<span v-bind:class="{'confirm':dialogbtn==0}">确认</span>
 					<span v-bind:class="{'confirm':dialogbtn==1}">取消</span>
@@ -54,6 +55,28 @@ export default {
        chosen:{
        	x:x,
        	y:y
+       },
+       gametypes:{
+       	1:{
+       		name:"小组赛",
+       		value:500
+       	},
+       	2:{
+       		name:"淘汰赛",
+       		value:400
+       	},
+       	3:{
+       		name:"八强赛",
+       		value:200
+       	},
+       	4:{
+       		name:"半决赛",
+       		value:100
+       	},
+       	5:{
+       		name:"决赛",
+       		value:50
+       	}
        },
        section:0,//猜冠军的模块标志，模块个数根据teamgroup来判定
        sectionX:0 //每个section x方向的位置标志
@@ -124,7 +147,7 @@ export default {
 			
 		},
 		beforeconfirm(){
-			if(!this.chosen.x||!this.chosen.y){
+			if(this.chosen.x==null||this.chosen.y==null){
 				alert("请选择球队后，再提交")
 				return
 			}
@@ -156,6 +179,9 @@ export default {
 		  			alert(r.data.errmsg)
 		  		}
 			})
+		},
+		getGameType(status,type){
+			return this.gametypes[status][type]
 		}
   },
   mounted(){

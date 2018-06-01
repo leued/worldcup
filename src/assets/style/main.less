@@ -43,6 +43,27 @@ a {
 		transform:scale(0.95, 0.95);
 	}
 }
+
+.tabfocus{
+	animation: tab 1.5s infinite;
+    -webkit-animation: tab 1.5s infinite;
+}
+
+@keyframes tab {
+	0% {
+		transform:scale(0.95, 0.95);
+		transform-origin: center bottom;
+	}
+	50%{
+		transform:scale(1.05, 1.05);
+		transform-origin: center bottom;
+	}
+	100% {
+		transform:scale(0.95, 0.95);
+		transform-origin: center bottom;
+	}
+}
+
 .focusleft{
 	animation: suofangl 1.5s infinite;
     -webkit-animation: suofangl 1.5s infinite;
@@ -156,7 +177,7 @@ a {
 	background-repeat: no-repeat;
 	.tab{
 		position: absolute;
-		top: -140/@base;
+		top: -145/@base;
 		>span{
 			background: url(../tab.png) center bottom;
 			display: inline-block;

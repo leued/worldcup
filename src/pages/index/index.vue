@@ -6,9 +6,9 @@
 			<div class="title">竞猜世界杯</div>
 		  	<div class="main">
 				<div class="tab">
-					<span v-bind:class="{'tabon':setLight(0),'focus':setFocus(0)}">猜胜负</span>
-					<span v-bind:class="{'tabon':setLight(1),'focus':setFocus(1)}">猜冠军</span>
-					<span v-bind:class="{'tabon':setLight(2),'focus':setFocus(2)}">积分榜</span>
+					<span v-bind:class="{'tabon':setLight(0),'tabfocus':setFocus(0)}">猜胜负</span>
+					<span v-bind:class="{'tabon':setLight(1),'tabfocus':setFocus(1)}">猜冠军</span>
+					<span v-bind:class="{'tabon':setLight(2),'tabfocus':setFocus(2)}">积分榜</span>
 				</div>
 				<div>
 					<game v-show="tabIndex==0" :psection="section" :dateindex="dateindex"></game>
