@@ -148,7 +148,8 @@ export default {
 		},
 		beforeconfirm(){
 			if(this.chosen.x==null||this.chosen.y==null){
-				alert("请选择球队后，再提交")
+				// alert("请选择球队后，再提交")
+				this.$bus.$emit("alert","请选择球队后，再提交");
 				return
 			}
 			this.dialogbtn = 0;
@@ -176,7 +177,8 @@ export default {
 		  			me.showDialog = false;
 					me.$bus.$emit('showloading',false);
 		  		}else{
-		  			alert(r.data.errmsg)
+		  			// alert(r.data.errmsg)
+		  			me.$bus.$emit("alert",r.data.errmsg);
 		  		}
 			})
 		},

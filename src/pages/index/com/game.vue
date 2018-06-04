@@ -257,7 +257,8 @@ export default {
 			//校验是不是该页的比赛都选择了
 			for(let i=0;i<me.gamelist.length;i++){
 				if(me.gamelist[i].chosen==null){
-					alert("请选择全部竞猜结果后，再提交")
+					// alert("请选择全部竞猜结果后，再提交")
+					me.$bus.$emit("alert","请选择全部竞猜结果后，再提交");
 					return
 				}
 			}
@@ -291,7 +292,8 @@ export default {
 			    }
 			}).then(function(r){
 				if(!r.data.errno==10000){
-					alert(r.data.errmsg)
+					// alert(r.data.errmsg)
+					me.$bus.$emit("alert",r.data.errmsg);
 					me.$bus.$emit('showloading',false);
 					me.showTip = false;
 					return

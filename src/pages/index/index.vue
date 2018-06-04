@@ -20,6 +20,13 @@
 		  	</div>
 		  </div>
 	  	<div v-if="showloading" class="loading"><span></span></div>
+	  	<transition name="fade">
+		  	<div v-if="showDialog" class="dialog">
+					<div class="tips">
+						{{message}}
+					</div>
+			</div>
+		</transition>
   	</div>
 </template>
 
@@ -49,6 +56,8 @@ export default {
 		dateindex:dateindex,
 		uid:window.UID,
 		showloading:false,
+		showDialog:false,
+		message:"",
 		showrule:true
     }
   },
@@ -114,6 +123,10 @@ export default {
 			}
 		},
 		comfirm(){
+			if(this.showDialog){
+				// this.showDialog = false;
+				return
+			}
 			this.$bus.$emit("comfirm"+this.tabIndex);
 		},
 		setLeft(){
@@ -152,7 +165,7 @@ export default {
 				}
 				break;
 			}
-			this.$bus.$emit("move"+this.tabIndex,"up")
+			this.$bus.$emit("move"+this.tabIndex,"up");
 		},
 		setDown(){
 			switch(this.section){
@@ -189,6 +202,13 @@ export default {
 	this.$bus.$on('showloading',function(o){
 		me.showloading = o;
 	})
+	this.$bus.$on("alert",function(o){
+		me.message=o;
+		me.showDialog = true;
+		setTimeout(function(){
+			me.showDialog = false
+		},1500)
+	});
   },
   beforeRouteEnter(to,from,next){
 		function getdata(){
