@@ -157,7 +157,7 @@ export default {
 		setDown(){
 			switch(this.section){
 				case 0:
-				if(this.tabIndex!=2){
+				if(this.tabIndex!=2&& this.tabIndex!=3){
 					this.section++;
 				}
 				break;
