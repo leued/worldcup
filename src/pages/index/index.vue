@@ -3,17 +3,19 @@
     	<rule v-if="showrule"></rule>
         <div v-if="!showrule">
 	        <div class="ad"></div>
-			<div class="title">竞猜世界杯</div>
+			<div class="title"></div>
 		  	<div class="main">
 				<div class="tab">
 					<span v-bind:class="{'tabon':setLight(0),'tabfocus':setFocus(0)}">猜胜负</span>
 					<span v-bind:class="{'tabon':setLight(1),'tabfocus':setFocus(1)}">猜冠军</span>
 					<span v-bind:class="{'tabon':setLight(2),'tabfocus':setFocus(2)}">积分榜</span>
+					<span v-bind:class="{'tabon':setLight(3),'tabfocus':setFocus(3)}">领福利</span>
 				</div>
 				<div>
 					<game v-show="tabIndex==0" :psection="section" :dateindex="dateindex"></game>
 					<champion v-show="tabIndex==1" :psection="section"></champion>
 					<score v-show="tabIndex==2" :psection="section"></score>
+					<bonus v-show="tabIndex==3" :psection="section"></bonus>
 				</div>
 		  	</div>
 		  </div>
@@ -28,6 +30,7 @@ import game from './com/game';
 import champion from './com/champion';
 import score from './com/score';
 import rule from './com/rule';
+import bonus from './com/bonus';
 
 export default {
   name: 'index',
@@ -49,7 +52,7 @@ export default {
 		showrule:true
     }
   },
-  components:{game,champion,score,rule},
+  components:{game,champion,score,rule,bonus},
   computed:{},
   methods: {
 		move(){
@@ -130,7 +133,7 @@ export default {
 		setRight(){
 			switch(this.section){
 				case 0:
-				if(this.tabIndex<2){
+				if(this.tabIndex<3){
 					this.tabIndex++;
 				}else{
 					this.$bus.$emit("move"+this.tabIndex,"right")

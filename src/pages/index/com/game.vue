@@ -19,16 +19,16 @@
 				  <img :src="imgroute+i.left+'.png'" alt="">
 				</div>
 				<div class="box box_2">
-					<span v-bind:class="{'on focus':setLight(2,0,index),'chosen':setChosen(index,3),'result':setResult(index,3)}">胜</span>
-					<span v-bind:class="{'on focus':setLight(2,1,index),'chosen':setChosen(index,1),'result':setResult(index,1)}">平</span>	
-					<span v-bind:class="{'on focus':setLight(2,2,index),'chosen':setChosen(index,0),'result':setResult(index,0)}">负</span>
+					<span v-bind:class="{'on focus':setLight(2,0,index),'chosen':setChosen(index,3),'result':setRight(index,3),'wrong':setWrong(index,3)}"><i v-if="setResult(index,3)"></i>胜</span>
+					<span v-bind:class="{'on focus':setLight(2,1,index),'chosen':setChosen(index,1),'result':setRight(index,1),'wrong':setWrong(index,1)}"><i v-if="setResult(index,1)"></i>平</span>	
+					<span v-bind:class="{'on focus':setLight(2,2,index),'chosen':setChosen(index,0),'result':setRight(index,0),'wrong':setWrong(index,0)}"><i v-if="setResult(index,0)"></i>负</span>
 				</div>
 				<div class="game box">{{configData.teamlist[i.right]}}
 					<img :src="imgroute+i.right+'.png'" alt="">
 				</div>
   			</div>
 		</div>
-		<div class="submit gamesubmit" v-bind:class="{'focus':setLight(3),'on':setOn()&&checkStatus()}">提交竞猜</div>
+		<div class="submit gamesubmit" v-bind:class="{'focus':setLight(3),'on':checkStatus()}">提交竞猜</div>
 		<div class="explain">
 			<span>规则说明</span>
 			<p>1、点击预测的结果，然后提交竞猜即可，提交后不可修改。</p>
@@ -146,6 +146,12 @@ export default {
 		},
 		setResult(index,num){
 			return this.gamelist[index].result == num
+		},
+		setWrong(index,num){
+			return this.gamelist[index].result!=null && !this.setResult(index,num)&&this.setChosen(index,num)
+		},
+		setRight(index,num){
+			return this.setResult(index,num)&&(this.setChosen(index,num)||this.gamelist[index].chosen==null)
 		},
 		checkStatus(){
 			// for(let i=0;i<this.gamelist.length;i++){
@@ -302,9 +308,13 @@ export default {
 				setTimeout(function(){
 					me.showTip = false;
 					me.$bus.$emit("dateChange","right");
-					me.section=2;
-					me.game.x=0;
-					me.game.y=0;
+					if(!me.checkStatus){
+						me.section=2;
+						me.game.x=0;
+						me.game.y=0;
+					}else{
+						me.section=1;
+					}
 				},2000)				
 			})
 		}

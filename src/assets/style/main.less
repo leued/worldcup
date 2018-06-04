@@ -145,14 +145,18 @@ a {
     height: 100%;
     left: 0;
     top: 0;
+    font-size: 0;
 }
 .title{
 	color: #ffffff;
 	font-size: 90/@base;
 	text-align: center;
 	width: 100%;
+	height: 100/@base;
 	position: absolute;
 	top: 30/@base;
+	background: url(../title.png) no-repeat center;
+	background-size: contain;
 }
 .ad{
 	width: 270/@base;
@@ -165,7 +169,6 @@ a {
 	font-size: 28/@base;
 }
 .main{
-
 	background: url(../bg.png) center center;
 	width:1831/@base;
 	margin:254/@base auto;
@@ -177,13 +180,12 @@ a {
 	background-repeat: no-repeat;
 	.tab{
 		position: absolute;
-		top: -145/@base;
+		top: -140/@base;
 		>span{
 			background: url(../tab.png) center bottom;
 			display: inline-block;
-			
 			height: 145/@base;
-			width: 246/@base;
+			width: 226/@base;
 		    background-size: contain;
 		    background-repeat: no-repeat;
 		    line-height: 240/@base;
@@ -193,25 +195,32 @@ a {
     		position: absolute;
 		}
 		>span:nth-child(1){
-			left: 358/@base;
+			left: 360/@base;
+			z-index: 7;
 		}
 		>span:nth-child(2){
 			left: 540/@base;
 			z-index: 5;
 		}
 		>span:nth-child(3){
-			left: 725/@base;
+			left: 720/@base;
+			z-index: 3;
 		}
-		.tabon{
+		>span:nth-child(4){
+			left: 900/@base;
+		}
+		>span.tabon{
 			background: url(../tabon.png) center bottom;
-			 background-size: contain;
+			background-size: contain;
 		    background-repeat: no-repeat;
 		    z-index: 10;
-		/*    height: 140/@base;
-			width: 187/@base;*/
-			line-height: 253/@base;
+		    top:-15/@base;
+		    height: 160/@base;
+			width: 236/@base;
+			line-height: 273/@base;
 		    color: #F72627 ;
 		    font-size: 36/@base;
+		    font-weight: 600;
 		}
 	}
 }
@@ -303,6 +312,19 @@ a {
     border: 1px solid #4c6e8f;
     color: #4c6e8f;
 	border-radius: 5px;
+	position: relative;
+	i{
+		display: inline-block;
+	    width: 100%;
+	    height: 100%;
+	    position: absolute;
+	    left: -1px;
+	    top: -1px;
+	    background: #000;
+	    opacity: 0.48;
+	    border: 1px #000 solid;
+	    border-radius: 5px;
+	}
 }
 .box_2  span.chosen{
 	color: #C2AD84;
@@ -310,10 +332,30 @@ a {
 	border: 1px solid #C2AD84;
 }
 .box_2  span.result{
-	color: #ffffff;
-	background: #cd1732;
-	border-radius: 5px;
-	border: 1px solid #cd1732;
+}
+.box_2  span.result:before{
+	content: "";
+	background: url(../dui.png) no-repeat center;
+	background-size:contain; 
+	height: 50/@base;
+	width:50/@base;
+	position: absolute;
+	top:0;
+	left:0;
+	z-index: 11;
+	/*opacity: 0.7;*/
+}
+.box_2  span.wrong:before{
+	content: "";
+	background: url(../cha.png) no-repeat center;
+	background-size:contain; 
+	height: 50/@base;
+	width:50/@base;
+	position: absolute;
+	top:0;
+	left:0;
+	z-index: 11;
+	/*opacity: 0.7;*/
 }
 .box_2 .on{
 	color: #003162;
@@ -492,6 +534,7 @@ a {
 		width: 428/@base;
 		left:146/@base;
 		top:317/@base;
+		opacity: 0.5;
 	}
 	em{
 		position: absolute;
@@ -804,4 +847,14 @@ a {
 		margin-left: -151/@base;
 		bottom: -35/@base;
 	}
+}
+.bonus{
+	background: url(../bonus.png) no-repeat center center;
+	background-size: contain;
+	width:1379/@base;
+	top:18/@base;
+	left: -17/@base;
+	margin:0 auto;
+	position: relative;
+	height: 755/@base;
 }
