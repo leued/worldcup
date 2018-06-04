@@ -6,7 +6,7 @@
   	      		<li  v-if="score.list[n-1]" v-for="n in 5">
   	      			<div>
   	      				<div>
-  	      					<img :src="score.list[n-1].picture &&filterHead(score.list[n-1].picture)" alt="">
+  	      					<img :src="filterHead(score.list[n-1].picture)" alt="">
   	      					<div>
   	      						<span>{{score.list[n-1].nickname && score.list[n-1].nickname}}</span>
   	      						<span>猜中<em>{{ score.list[n-1].total_victory}}</em>场</span>	
@@ -20,7 +20,7 @@
   	      		<li v-if="score.list[n+4]" v-for="n in 5">
   	      			<div>
   	      				<div>
-  	      					<img :src="score.list[n+4].picture&& filterHead(score.list[n+4].picture)" alt="">
+  	      					<img :src="filterHead(score.list[n+4].picture)" alt="">
   	      					<div>
   	      						<span>{{score.list[n+4].nickname && score.list[n+4].nickname}}</span>
   	      						<span>猜中<em>{{score.list[n+4].total_victory}}</em>场</span>	
@@ -82,12 +82,14 @@ export default {
     return {
        gametype:configData.gametype,
        score:configData.score,
+       defaultimg:'https://i3.letvimg.com/lc04_user/201610/10/20/05/333304201476101122.jpg',
        uid:UID
       }
   },
   methods:{
   	filterHead(img){
-  		return img.split(",")[0]
+      var i =  img?img.split(",")[0]:this.defaultimg;
+  		return i
   	}
   },
   mounted(){
