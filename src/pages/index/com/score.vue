@@ -1,7 +1,7 @@
 <template>
   	<div>
   	    <div class="score">
-  	      <div class="scorelist"  v-if="score.list.length!=0 && gametype!=1">
+  	      <div class="scorelist"  v-if="score.list.length!=0 && gametype!=6">
   	      	<ul>
   	      		<li  v-if="score.list[n-1]" v-for="n in 5">
   	      			<div>
@@ -63,7 +63,7 @@
         <div class="notreward" v-if="gametype==6&&score.user.number>10">
              <p>遗憾，您未能在本次竞猜中进入获奖名次...</p>
         </div>
-        <div class="reward" v-if="gametype==1&&score.user.number<10">
+        <div class="reward" v-if="gametype==6&&score.user.number<10">
              <p>遗憾，您未能在本次竞猜中进入获奖名次...</p>
         </div>
   		<div class="explain">
