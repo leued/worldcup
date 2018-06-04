@@ -226,6 +226,16 @@ export default {
 			})
 		}
 
+		function relogin(){
+			var a = document.createElement("div");
+		    a.setAttribute('class','dialog');
+		    var b = document.createElement("div");
+		    b.setAttribute('class','tips');
+		    b.innerHTML="请退出后重新登录";
+		    a.appendChild(b)
+		 	document.body.appendChild(a);
+		}
+
 /*登录模块*/
 
 	 var getUrlParam = function(name) {
@@ -237,6 +247,8 @@ export default {
 	  if (getUrlParam("uid")) {
 	    window.UID = getUrlParam("uid");
 	  	getdata();
+	 }else{
+	    relogin()
 	 }
 
 
@@ -253,7 +265,12 @@ export default {
 	    }
 	    window.OnStvBrowserResume = function(){
 	    	window.UID = window.LetvFish && window.LetvFish.getDeviceUid() || '';
-	    	getdata();
+	    	if(!window.UID){
+	    		relogin()
+	    	}else{
+	    		getdata();
+	    	}
+	    	
 	    }
 	})();
 

@@ -19,9 +19,9 @@
 				  <img :src="imgroute+i.left+'.png'" alt="">
 				</div>
 				<div class="box box_2">
-					<span v-bind:class="{'on focus':setLight(2,0,index),'chosen':setChosen(index,3),'result':setRight(index,3),'wrong':setWrong(index,3)}"><i v-if="setResult(index,3)"></i>胜</span>
-					<span v-bind:class="{'on focus':setLight(2,1,index),'chosen':setChosen(index,1),'result':setRight(index,1),'wrong':setWrong(index,1)}"><i v-if="setResult(index,1)"></i>平</span>	
-					<span v-bind:class="{'on focus':setLight(2,2,index),'chosen':setChosen(index,0),'result':setRight(index,0),'wrong':setWrong(index,0)}"><i v-if="setResult(index,0)"></i>负</span>
+					<span v-bind:class="{'on focus':setLight(2,0,index),'chosen':setChosen(index,3),'result':setRight(index,3),'wrong':setWrong(index,3)}"><i v-if="setI(index,3)"></i>胜</span>
+					<span v-bind:class="{'on focus':setLight(2,1,index),'chosen':setChosen(index,1),'result':setRight(index,1),'wrong':setWrong(index,1)}"><i v-if="setI(index,1)"></i>平</span>	
+					<span v-bind:class="{'on focus':setLight(2,2,index),'chosen':setChosen(index,0),'result':setRight(index,0),'wrong':setWrong(index,0)}"><i v-if="setI(index,0)"></i>负</span>
 				</div>
 				<div class="game box">{{configData.teamlist[i.right]}}
 					<img :src="imgroute+i.right+'.png'" alt="">
@@ -151,7 +151,17 @@ export default {
 			return this.gamelist[index].result!=null && !this.setResult(index,num)&&this.setChosen(index,num)
 		},
 		setRight(index,num){
-			return this.setResult(index,num)&&(this.setChosen(index,num)||this.gamelist[index].chosen==null)
+			return this.gamelist[index].chosen &&this.setResult(index,num)&&(this.setChosen(index,num)||this.gamelist[index].chosen==null)
+		},
+		setI(index,num){
+			if(this.gamelist[index].result){
+				if(this.gamelist[index].chosen==this.gamelist[index].result){
+					return this.setResult(index,num)
+				}else{
+					return this.setChosen(index,num)
+				}
+			}
+			
 		},
 		checkStatus(){
 			// for(let i=0;i<this.gamelist.length;i++){
