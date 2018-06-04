@@ -1,7 +1,7 @@
 <template>
   	<div>
   	    <div class="score">
-  	      <div class="scorelist">
+  	      <div class="scorelist"  v-if="score.list.length!=0 && gametype!=1">
   	      	<ul>
   	      		<li  v-if="score.list[n-1]" v-for="n in 5">
   	      			<div>
@@ -60,6 +60,12 @@
         <div class="notstart" v-if="score.list.length==0||score.list==''">
              <p>尚未开始比赛...</p>
         </div>
+        <div class="notreward" v-if="gametype==6&&score.user.number>10">
+             <p>遗憾，您未能在本次竞猜中进入获奖名次...</p>
+        </div>
+        <div class="reward" v-if="gametype==1&&score.user.number<10">
+             <p>遗憾，您未能在本次竞猜中进入获奖名次...</p>
+        </div>
   		<div class="explain">
 			<span>规则说明</span>
 			<p>1、单场比赛在次日零点系统结算后可获得积分；猜冠军支持的球队在决赛后可获得积分。</p>
@@ -74,6 +80,7 @@ export default {
   name: 'score',
   data () {
     return {
+       gametype:configData.gametype,
        score:configData.score,
        uid:UID
       }
