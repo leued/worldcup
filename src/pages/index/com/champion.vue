@@ -74,6 +74,10 @@ export default {
        		value:100
        	},
        	5:{
+       		name:"季军赛",
+       		value:50
+       	},
+       	6:{
        		name:"决赛",
        		value:50
        	}
