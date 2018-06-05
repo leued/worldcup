@@ -60,11 +60,10 @@
         <div class="notstart" v-if="score.list.length==0||score.list==''">
              <p>尚未开始比赛...</p>
         </div>
-        <div class="notreward" v-if="gametype==6&&score.user.number>10">
+        <div class="notreward" v-if="gametype==6&&(score.user.number>10||score.user.number==0)">
              <p>遗憾，您未能在本次竞猜中进入获奖名次...</p>
         </div>
-        <div class="reward" v-if="gametype==6&&score.user.number<10">
-             <p>遗憾，您未能在本次竞猜中进入获奖名次...</p>
+        <div class="reward" v-if="gametype==6&&score.user.number<10 && score.user.number>0">
         </div>
   		<div class="explain">
 			<span>规则说明</span>
