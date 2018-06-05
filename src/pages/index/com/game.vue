@@ -80,6 +80,7 @@ export default {
   computed:{
   	gamelist(){
   		var gamelist =[];
+  		// console.log(this.configData.gamelist,this.configData.currentdate)
   		for(let i=0;i<this.configData.gamelist.length;i++){
   			if(this.configData.gamelist[i].time == this.configData.currentdate){
   				gamelist = this.configData.gamelist[i].data;
@@ -169,6 +170,7 @@ export default {
 			// 		return false
 			// 	}
 			// }
+			// console.log(this.configData.gamelist[this.gameindex],this.gameindex)
 			return this.configData.gamelist[this.gameindex].status
 		},
 		handleUp(){

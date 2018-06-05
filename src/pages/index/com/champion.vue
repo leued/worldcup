@@ -147,6 +147,10 @@ export default {
 			
 		},
 		beforeconfirm(){
+			if(!this.gametypes[this.configData.gametype]){
+				this.$bus.$emit("alert","比赛已结束");
+				return
+			}
 			if(this.chosen.x==null||this.chosen.y==null){
 				// alert("请选择球队后，再提交")
 				this.$bus.$emit("alert","请选择球队后，再提交");
