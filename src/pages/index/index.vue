@@ -2,7 +2,7 @@
     <div>
     	<rule v-if="showrule"></rule>
         <div v-if="!showrule">
-	        <div class="ad"></div>
+	        <!-- <div class="ad"></div> -->
 			<div class="title"></div>
 		  	<div class="main">
 				<div class="tab">
@@ -247,8 +247,6 @@ export default {
 	  if (getUrlParam("uid")) {
 	    window.UID = getUrlParam("uid");
 	  	getdata();
-	 }else{
-	    relogin()
 	 }
 
 

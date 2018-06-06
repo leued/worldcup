@@ -64,6 +64,8 @@
              <p>遗憾，您未能在本次竞猜中进入获奖名次...</p>
         </div>
         <div class="reward" v-if="gametype==7&&score.user.number<10 && score.user.number>0">
+            <p>领奖方式</p>
+            <div>用微信扫码，关注乐视超级电视公众号，回复您的中奖码【{{uid}}】领取奖品</div>
         </div>
   		<div class="explain">
 			<span>规则说明</span>
