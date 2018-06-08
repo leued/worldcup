@@ -152,10 +152,10 @@ export default {
 			return this.gamelist[index].result!=null && !this.setResult(index,num)&&this.setChosen(index,num)
 		},
 		setRight(index,num){
-			return this.gamelist[index].chosen &&this.setResult(index,num)&&(this.setChosen(index,num)||this.gamelist[index].chosen==null)
+			return this.gamelist[index].chosen!=null &&this.setResult(index,num)&&(this.setChosen(index,num)||this.gamelist[index].chosen==null)
 		},
 		setI(index,num){
-			if(this.gamelist[index].result){
+			if(this.gamelist[index].result!=null){
 				if(this.gamelist[index].chosen==this.gamelist[index].result){
 					return this.setResult(index,num)
 				}else{
@@ -322,13 +322,14 @@ export default {
 				setTimeout(function(){
 					me.showTip = false;
 					me.$bus.$emit("dateChange","right");
-					if(!me.checkStatus){
+					if(me.checkStatus){
 						me.section=2;
 						me.game.x=0;
 						me.game.y=0;
 					}else{
 						me.section=1;
 					}
+					
 				},2000)				
 			})
 		}

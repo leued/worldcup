@@ -197,7 +197,10 @@ export default {
 		me.configData.currentdate = me.configData.date[me.dateindex];
 	})
 	this.$bus.$on('tabToggle',function(index){
-		me.tabIndex = index;
+		// if(index==2){
+		// 	me.section=0;
+		// }
+		// me.tabIndex = index;
 	})
 	this.$bus.$on('showloading',function(o){
 		me.showloading = o;

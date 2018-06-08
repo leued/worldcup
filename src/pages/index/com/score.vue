@@ -57,7 +57,7 @@
   	          </ul>
   	      </div>
   	    </div>
-        <div class="notstart" v-if="score.list.length==0||score.list==''">
+        <div class="notstart" v-if="score.list.length==0&&gametype!=7">
              <p>尚未开始比赛...</p>
         </div>
         <div class="notreward" v-if="gametype==7&&(score.user.number>10||score.user.number==0)">
