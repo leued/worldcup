@@ -19,7 +19,7 @@
 			<div class="dialogbox">
 				<h2>支持球队</h2>
 				<p>您确认支持{{configData.teamlist[configData.teamgroup[chosen.y-1][chosen.x]]}}对吗？</p>
-				<p>当前是{{getGameType(configData.gametype,'name')}}赛，猜中可获{{getGameType(configData.gametype,'value')}}积分</p>
+				<p>当前是{{getGameType(configData.gametype,'name')}}，猜中可获{{getGameType(configData.gametype,'value')}}积分</p>
 				<div>
 					<span v-bind:class="{'confirm':dialogbtn==0}">确认</span>
 					<span v-bind:class="{'confirm':dialogbtn==1}">取消</span>
