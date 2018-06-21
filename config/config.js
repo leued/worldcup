@@ -6,7 +6,8 @@ module.exports = {
   },
   testing : {
   	a : 1,
-  	assetsPublicPath : '"http://127.0.0.1:8081"'
+  	// assetsPublicPath : '"http://ued.beta.scloud.letv.cn:8888/le_h5/worldcup/"'
+    assetsPublicPath : '"http://static2-scloud.cp21.ott.cibntv.net/le_h5/worldcup/"'
   },
   development : {
   	"apiRoot" :'"http://ued.beta.scloud.letv.cn:8181/"',
